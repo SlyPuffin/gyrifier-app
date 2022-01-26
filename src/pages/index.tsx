@@ -1,8 +1,9 @@
 import { trpc } from "@/utils/trpc";
 export default function Home() {
-  const { data, isLoading } = trpc.useQuery(["hello", { text: "flashcards" }]);
+  const { data, isLoading } = trpc.useQuery(["get-random-card"]);
 
-  if (isLoading) return <div className="text-black">Loading...</div>;
+  if (isLoading)
+    return <div className="text-black flex justify-center">Loading...</div>;
   if (data)
     return (
       <div className="h-screen w-screen flex justify-center items-center">
@@ -17,7 +18,7 @@ export default function Home() {
           </div>
           <div className="relative flex h-4/5 w-4/5 bg-orangeweboxfordblue-primary justify-center items-center border-orangeweboxfordblue-border border-4 shadow-2xl rounded-[9rem]">
             <div className="text-orangeweboxfordblue-secondary text-5xl">
-              {data.greeting}
+              {data.front}
             </div>
           </div>
           <div className="absolute flex flex-row space-x-5 bottom-[8%] left-[8%]">
