@@ -19,4 +19,5 @@ model Card {
   front           String    @db.VarChar(255)
   back            String    @db.VarChar(255)
   source          String    @db.VarChar(255)
+  xp              Float     @db.Float
 }
