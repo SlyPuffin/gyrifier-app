@@ -8,7 +8,11 @@ export default function Home() {
   if (data)
     return (
       <div className="h-screen w-screen flex justify-center items-center">
-        <a href="http://localhost:3000/api/auth/login" className="text-4xl px-8 py-2 text-orangeweboxfordblue-primary">Login </a>
+        
+        <div id="loginLogout">
+        <a href="http://localhost:3000/api/auth/login" className="fixed top-0 left-0 text-4xl px-8 py-2 text-orangeweboxfordblue-primary">Login </a>
+        <a href="http://localhost:3000/api/auth/logout" className="fixed top-0 left-50% text-4xl px-8 py-2 text-orangeweboxfordblue-primary">LogOut </a>
+        </div>
         <div className="h-5/6 w-5/6 relative flex justify-center items-center">
           <div className="absolute text-orangeweboxfordblue-primary text-5xl shadow-2xl top-1">
             Source Material
