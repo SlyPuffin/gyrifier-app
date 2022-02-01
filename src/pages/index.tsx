@@ -9,18 +9,27 @@ export default function Home() {
     cardNumber: number;
     bars: number;
     level: number;
+    countdown: number;
   };
 
   class Card extends React.Component<CardProps, CardState> {
+    private timerID: number = 0;
     state: CardState = {
       isFront: true,
       cardNumber: 0,
       bars: 0,
       level: 0,
+      countdown: 12,
     };
 
     componentDidMount() {
-      this.updateLevelsAndSide();
+      // NOTE: This seems to reset when 'looking away' from the window
+      this.updateStateForCardIndex(this.state.cardNumber);
+      this.timerID = window.setInterval(() => this.tick(), 1000);
+    }
+
+    componentWillUnmount() {
+      clearInterval(this.timerID);
     }
 
     render() {
@@ -57,7 +66,7 @@ export default function Home() {
                 className="cursor-pointer absolute flex w-36 h-36 bottom-[8%] right-[8%] justify-center items-center group bg-orangeweboxfordblue-tertiary border-orangeweboxfordblue-border border-4 shadow-2xl rounded-full"
               >
                 <div className="absolute text-8xl text-orangeweboxfordblue-primary visible group-hover:invisible">
-                  12
+                  {this.state.countdown}
                 </div>
                 <div className="absolute text-8xl text-orangeweboxfordblue-primary invisible group-hover:visible">
                   →
@@ -90,6 +99,16 @@ export default function Home() {
         );
       }
     }
+    tick = () => {
+      var newTime = this.state.countdown - 1;
+      if (newTime < 0) {
+        this.next();
+      } else {
+        this.setState({
+          countdown: newTime,
+        });
+      }
+    };
     flip = () => {
       this.setState((state) => ({
         isFront: !state.isFront,
@@ -102,12 +121,13 @@ export default function Home() {
         return "bg-orangeweboxfordblue-quaternary border-dotted";
       }
     };
-    updateLevelsAndSide = () => {
+    updateStateForCardIndex = (currentCard: number) => {
       var frontSide = true,
         exp = 0,
         lvl = 0,
-        brs = 0;
-      exp = data ? data.cards[this.state.cardNumber].xp : 0;
+        brs = 0,
+        timer = 12;
+      exp = data ? data.cards[currentCard].xp : 0;
       if (exp < 3) {
         lvl = 1;
         brs = exp;
@@ -123,6 +143,8 @@ export default function Home() {
         isFront: frontSide,
         level: lvl,
         bars: brs,
+        countdown: timer,
+        cardNumber: currentCard,
       }));
     };
     next = () => {
@@ -130,11 +152,7 @@ export default function Home() {
       if (data && nextCard >= data.cards.length) {
         nextCard = 0;
       }
-      // Calculate info for the xp bar
-      this.setState((state) => ({
-        cardNumber: nextCard,
-      }));
-      this.updateLevelsAndSide();
+      this.updateStateForCardIndex(nextCard);
     };
   }
 
