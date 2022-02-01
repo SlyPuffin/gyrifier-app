@@ -20,7 +20,7 @@ export default function Home() {
     };
 
     componentDidMount() {
-      this.next();
+      this.updateLevelsAndSide();
     }
 
     render() {
@@ -102,18 +102,12 @@ export default function Home() {
         return "bg-orangeweboxfordblue-quaternary border-dotted";
       }
     };
-    next = () => {
-      var nextCard = this.state.cardNumber + 1,
-        frontSide = true,
+    updateLevelsAndSide = () => {
+      var frontSide = true,
         exp = 0,
         lvl = 0,
         brs = 0;
-      // Move the array forward to the next card
-      if (data && nextCard >= data.cards.length) {
-        nextCard = 0;
-      }
-      // Calculate info for the xp bar
-      exp = data ? data.cards[nextCard].xp : 0;
+      exp = data ? data.cards[this.state.cardNumber].xp : 0;
       if (exp < 3) {
         lvl = 1;
         brs = exp;
@@ -126,11 +120,21 @@ export default function Home() {
         if (brs > 3) brs = 3;
       }
       this.setState((state) => ({
-        cardNumber: nextCard,
         isFront: frontSide,
         level: lvl,
         bars: brs,
       }));
+    };
+    next = () => {
+      var nextCard = this.state.cardNumber + 1;
+      if (data && nextCard >= data.cards.length) {
+        nextCard = 0;
+      }
+      // Calculate info for the xp bar
+      this.setState((state) => ({
+        cardNumber: nextCard,
+      }));
+      this.updateLevelsAndSide();
     };
   }
 
