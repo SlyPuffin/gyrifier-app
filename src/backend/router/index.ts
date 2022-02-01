@@ -3,15 +3,15 @@ import * as trpcNext from "@trpc/server/adapters/next";
 import { z } from "zod";
 import { prisma } from "@/backend/utils/prisma";
 
-export const appRouter = trpc.router().query("get-random-card", {
+export const appRouter = trpc.router().query("get-deck", {
   input: z
     .object({
       text: z.string().nullish(),
     })
     .nullish(),
   async resolve({ input }) {
-    const cardFromDb = await prisma.card.findFirst();
-    return { front: cardFromDb?.front };
+    const cardsFromDb = await prisma.dxCard.findMany();
+    return { cards: cardsFromDb };
   },
 });
 
