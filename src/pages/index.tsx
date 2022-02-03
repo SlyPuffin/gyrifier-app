@@ -76,22 +76,51 @@ export default function Home() {
                 <div className="text-6xl py-2 w-8 text-orangeweboxfordblue-primary">
                   {this.state.level}
                 </div>
-                <div className="flex flex-row shadow-2xl border-orangeweboxfordblue-border border-2">
+                <div className="flex flex-row shadow-2xl border-orangeweboxfordblue-border border-l-2 border-y-2">
                   <div
-                    className={`px-12 py-10 border-orangeweboxfordblue-border border-r-2 ${this.getColorAndBorder(
-                      1
+                    className={`${this.getWidth(
+                      this.state.level
+                    )} py-10 border-orangeweboxfordblue-border border-r-2 ${this.getColorAndBorder(
+                      1,
+                      this.state.level
                     )}`}
                   ></div>
                   <div
-                    className={`px-12 py-10 border-orangeweboxfordblue-border border-r-2 ${this.getColorAndBorder(
-                      2
+                    className={`${this.getWidth(
+                      this.state.level
+                    )} py-10 border-orangeweboxfordblue-border border-r-2 ${this.getColorAndBorder(
+                      2,
+                      this.state.level
                     )}`}
                   ></div>
                   <div
-                    className={`px-12 py-10 border-orangeweboxfordblue-border ${this.getColorAndBorder(
-                      3
+                    className={`${this.getWidth(
+                      this.state.level
+                    )} py-10 border-orangeweboxfordblue-border border-r-2 ${this.getColorAndBorder(
+                      3,
+                      this.state.level
                     )}`}
                   ></div>
+                  {this.state.level > 1 && (
+                    <div
+                      className={`${this.getWidth(
+                        this.state.level
+                      )} py-10 border-orangeweboxfordblue-border border-r-2 ${this.getColorAndBorder(
+                        4,
+                        this.state.level
+                      )}`}
+                    ></div>
+                  )}
+                  {this.state.level > 2 && (
+                    <div
+                      className={`${this.getWidth(
+                        this.state.level
+                      )} py-10 border-orangeweboxfordblue-border border-r-2 ${this.getColorAndBorder(
+                        5,
+                        this.state.level
+                      )}`}
+                    ></div>
+                  )}
                 </div>
               </div>
             </div>
@@ -114,11 +143,24 @@ export default function Home() {
         isFront: !state.isFront,
       }));
     };
-    getColorAndBorder = (row: number) => {
+    getColorAndBorder = (row: number, level: number) => {
       if (this.state.bars >= row) {
         return "bg-orangeweboxfordblue-tertiary";
+      } else if (row - level === 2) {
+        return "bg-orangeweboxfordblue-quaternary";
       } else {
         return "bg-orangeweboxfordblue-quaternary border-dotted";
+      }
+    };
+    getWidth = (level: number) => {
+      switch (level) {
+        case 1:
+          return "px-12";
+        case 2:
+          return "px-9";
+        case 3:
+          return "px-7";
+        default:
       }
     };
     updateStateForCardIndex = (currentCard: number) => {
@@ -131,13 +173,13 @@ export default function Home() {
       if (exp < 3) {
         lvl = 1;
         brs = exp;
-      } else if (exp < 6) {
+      } else if (exp < 7) {
         lvl = 2;
         brs = exp - 3;
       } else {
         lvl = 3;
-        brs = exp - 6;
-        if (brs > 3) brs = 3;
+        brs = exp - 7;
+        if (brs > 5) brs = 5;
       }
       this.setState((state) => ({
         isFront: frontSide,
