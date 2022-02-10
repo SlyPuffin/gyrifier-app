@@ -6,6 +6,7 @@ async function main() {
   const deck = await prisma.dxDeck.create({
     data: {
       type: "concept",
+      name: "Seeded Deck 1",
       cards: {
         create: [
           {
