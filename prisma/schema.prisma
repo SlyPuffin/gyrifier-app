@@ -14,10 +14,21 @@ generator client {
 
 model Card {
   id              Int       @default(autoincrement()) @id
+  deckId          Int?      
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
   front           String    @db.VarChar(255)
   back            String    @db.VarChar(255)
   source          String    @db.VarChar(255)
   xp              Float     @db.Float
+  Deck            Deck?     @relation (fields: [deckId], references: [id])
+}
+
+model Deck {
+  id              Int       @default(autoincrement()) @id
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  title           String    @db.VarChar(255)
+  description     String    @db.VarChar(255)
+  Card            Card[]
 }
