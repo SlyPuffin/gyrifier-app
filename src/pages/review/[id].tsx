@@ -6,7 +6,9 @@ import Link from "next/link";
 
 export default function Review() {
   const id = useRouter().query.id as string;
-  const cardQuery = trpc.useQuery(["get-cards-from-deck", { id }]);
+  const cardQuery = trpc.useQuery(["get-cards-from-deck", { id }], {
+    refetchOnWindowFocus: false,
+  });
 
   if (cardQuery.error) {
     return (
