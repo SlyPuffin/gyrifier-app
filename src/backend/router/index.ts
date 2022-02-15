@@ -6,13 +6,8 @@ import { prisma } from "@/backend/utils/prisma";
 export const appRouter = trpc
   .router()
   .query("get-decks", {
-    input: z
-      .object({
-        text: z.string().nullish(),
-      })
-      .nullish(),
     async resolve({ input }) {
-      const decksFromDb = await prisma.dxDeck.findMany();
+      const decksFromDb = await prisma.deck.findMany();
       return { decks: decksFromDb };
     },
   })
@@ -22,7 +17,7 @@ export const appRouter = trpc
     }),
     async resolve({ input }) {
       const { id } = input;
-      const cardsFromDb = await prisma.dxCard.findMany({
+      const cardsFromDb = await prisma.card.findMany({
         where: {
           deckId: id,
         },

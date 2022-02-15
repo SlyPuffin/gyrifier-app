@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  const deck = await prisma.dxDeck.create({
+  const deck = await prisma.deck.create({
     data: {
       type: "concept",
       name: "Seeded Deck 1",

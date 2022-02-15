@@ -1,13 +1,15 @@
 import { trpc } from "@/utils/trpc";
 import React from "react";
 import Link from "next/link";
-import { DxDeck } from "@prisma/client";
+import { Deck } from "@prisma/client";
 
 export default function Home() {
-  const { data, isLoading } = trpc.useQuery(["get-decks"]);
+  const { data, isLoading } = trpc.useQuery(["get-decks"], {
+    refetchOnWindowFocus: false,
+  });
 
   type DeckProps = {
-    decks: DxDeck[];
+    decks: Deck[];
   };
   type DeckState = {};
 

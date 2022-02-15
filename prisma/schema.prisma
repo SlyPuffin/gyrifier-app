@@ -12,16 +12,16 @@ generator client {
   previewFeatures = ["referentialIntegrity"]
 }
 
-model DxDeck {
+model Deck {
   id              String    @id @default(uuid())
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
   type            String    @db.VarChar(255)
   name            String    @db.Text
-  cards           DxCard[]
+  cards           Card[]
 }
 
-model DxCard {
+model Card {
   id              String    @id @default(uuid())
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
@@ -30,6 +30,6 @@ model DxCard {
   source          String    @db.VarChar(255)
   xp              Float     @db.Float 
   deckId          String
-  deck            DxDeck    @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  deck            Deck    @relation(fields: [deckId], references: [id], onDelete: Cascade)
   @@index([deckId])
 }
