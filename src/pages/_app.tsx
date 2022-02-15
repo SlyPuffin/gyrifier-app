@@ -1,12 +1,18 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import second from '../layouts/NavbarWrapper'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <NavbarWrapper>
+       <Component {...pageProps} />
+    </NavbarWrapper>
+  )
 }
 
 import { withTRPC } from "@trpc/next";
 import type { AppRouter } from "@/backend/router";
+import NavbarWrapper from "../layouts/NavbarWrapper";
 
 export default withTRPC<AppRouter>({
   config({ ctx }) {
