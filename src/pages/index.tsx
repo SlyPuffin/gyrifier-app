@@ -1,9 +1,11 @@
 import { trpc } from "@/utils/trpc";
 import React from "react";
 import Link from "next/link";
+<<<<<<< HEAD
 import { Deck } from "@prisma/client";
 
 export default function Home() {
+<<<<<<< HEAD
   const userQuery = trpc.useQuery(["get-user"], {
     refetchOnWindowFocus: false,
   });
@@ -57,4 +59,8 @@ export default function Home() {
       </div>
     );
   }
+=======
+>>>>>>> 0d9ce7a (added navbar to utils and separated deck overview into own file)
+=======
+>>>>>>> d48d198 (added layout directory, NavbarWrapper layout, and implemented it in _app)
 }
