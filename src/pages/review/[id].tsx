@@ -23,8 +23,6 @@ export default function Review() {
     return <>Loading...</>;
   }
   const { data } = cardQuery;
-  console.log({ data });
-  console.log({ cardQuery });
 
   type CardProps = {};
   type CardState = {
@@ -46,7 +44,6 @@ export default function Review() {
     };
 
     componentDidMount() {
-      // NOTE: This seems to reset when 'looking away' from the window
       this.updateStateForCardIndex(this.state.cardNumber);
       this.timerID = window.setInterval(() => this.tick(), 1000);
     }
