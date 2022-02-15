@@ -3,17 +3,28 @@ import * as trpcNext from "@trpc/server/adapters/next";
 import { z } from "zod";
 import { prisma } from "@/backend/utils/prisma";
 
-export const appRouter = trpc.router().query("get-random-card", {
-  input: z
-    .object({
-      text: z.string().nullish(),
-    })
-    .nullish(),
-  async resolve({ input }) {
-    const cardFromDb = await prisma.card.findFirst();
-    return { front: cardFromDb?.front };
-  },
-});
+export const appRouter = trpc
+  .router()
+  .query("get-decks", {
+    async resolve({ input }) {
+      const decksFromDb = await prisma.deck.findMany();
+      return { decks: decksFromDb };
+    },
+  })
+  .query("get-cards-from-deck", {
+    input: z.object({
+      id: z.string(),
+    }),
+    async resolve({ input }) {
+      const { id } = input;
+      const cardsFromDb = await prisma.card.findMany({
+        where: {
+          deckId: id,
+        },
+      });
+      return { cards: cardsFromDb };
+    },
+  });
 
 // export type definition of API
 export type AppRouter = typeof appRouter;
