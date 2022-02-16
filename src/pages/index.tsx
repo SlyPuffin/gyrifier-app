@@ -6,6 +6,7 @@ import { Deck } from "@prisma/client";
 
 export default function Home() {
 <<<<<<< HEAD
+<<<<<<< HEAD
   const userQuery = trpc.useQuery(["get-user"], {
     refetchOnWindowFocus: false,
   });
@@ -63,4 +64,9 @@ export default function Home() {
 >>>>>>> 0d9ce7a (added navbar to utils and separated deck overview into own file)
 =======
 >>>>>>> d48d198 (added layout directory, NavbarWrapper layout, and implemented it in _app)
+=======
+   return (
+    <button className="bg-green-300 border-green-600 border-b p-4 m-4 rounded">Dummy Button</button>
+   )
+>>>>>>> 0b4b0e2 (added puffin logo and svg file)
 }

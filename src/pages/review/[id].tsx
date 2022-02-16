@@ -4,11 +4,21 @@ import { useRouter } from "next/router";
 import NextError from "next/error";
 import Link from "next/link";
 
+<<<<<<< HEAD
 export default function Review() {
   const id = useRouter().query.id as string;
   const cardQuery = trpc.useQuery(["get-cards-from-deck", { id }], {
     refetchOnWindowFocus: false,
   });
+=======
+export default function Review(props: any) {
+  console.log("props", props)
+  const middle = useRouter().query
+  console.log("middle", middle)
+  const id = middle.id as string;
+  const cardQuery = trpc.useQuery(["get-cards-from-deck", { id }]);
+  console.log("cardQuerty", cardQuery)
+>>>>>>> 0b4b0e2 (added puffin logo and svg file)
 
   if (cardQuery.error) {
     return (

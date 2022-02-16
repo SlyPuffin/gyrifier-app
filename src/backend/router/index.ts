@@ -25,10 +25,8 @@ export const appRouter = trpc
       return { decks: decksFromDb };
     },
   })
-  .query("get-cards-from-deck", {
-    input: z.object({
-      id: z.string(),
-    }),
+  .query("get-cards-from-deck",
+   {input: z.object({id: z.string(),}),
     async resolve({ input }) {
       const { id } = input;
       const cardsFromDb = await prisma.card.findMany({
