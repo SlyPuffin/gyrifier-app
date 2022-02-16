@@ -10,7 +10,7 @@ export default function Review(props: any) {
   console.log("middle", middle)
   const id = middle.id as string;
   const cardQuery = trpc.useQuery(["get-cards-from-deck", { id }]);
-  console.log(cardQuery)
+  console.log("cardQuerty", cardQuery)
 
   if (cardQuery.error) {
     return (

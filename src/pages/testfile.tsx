@@ -1,27 +1,26 @@
 import { trpc } from "@/utils/trpc";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import NextError from "next/error";
 import Link from "next/link";
+import Image from "next/image"
+import puffin from "../../public/puffin.svg"
 
 
 
 export default function TestPage() {
     const sayHi = trpc.useQuery(["say-hi"])
-    // const myAsyncLogger = async () => {
-    //     return sayHi.data?.hi as string
-    // }
-    const dude = sayHi.data.hi
+  
+    const jonsey = sayHi.data?.hi ? sayHi.data.hi : "Name Here";
 
-    const returnable = async () => {
-        return sayHi.data.hi
-    }
-
-    let jonsey = returnable().then((val) => console.log(val))
-    console.log(jonsey)
+    useEffect(() => {
+        console.log("component mounted")
+    })
 
     return (
-        <button className="bg-green-300 border-green-600 border-b p-4 m-4 rounded">Start {dude}</button>
+        <div>
+            <button className="bg-green-300 border-green-600 border-b p-4 m-4 rounded">Start {jonsey} </button>
+        </div>
 
     )
 }
