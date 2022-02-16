@@ -4,9 +4,13 @@ import { useRouter } from "next/router";
 import NextError from "next/error";
 import Link from "next/link";
 
-export default function Review() {
-  const id = useRouter().query.id as string;
+export default function Review(props: any) {
+  console.log("props", props)
+  const middle = useRouter().query
+  console.log("middle", middle)
+  const id = middle.id as string;
   const cardQuery = trpc.useQuery(["get-cards-from-deck", { id }]);
+  console.log(cardQuery)
 
   if (cardQuery.error) {
     return (
@@ -21,8 +25,8 @@ export default function Review() {
     return <>Loading...</>;
   }
   const { data } = cardQuery;
-  console.log({ data });
-  console.log({ cardQuery });
+  // console.log({ data });
+  // console.log({ cardQuery });
 
   type CardProps = {};
   type CardState = {
@@ -151,6 +155,7 @@ export default function Review() {
         );
       }
     }
+
     tick = () => {
       var newTime = this.state.countdown - 1;
       if (newTime < 0) {
@@ -161,11 +166,13 @@ export default function Review() {
         });
       }
     };
+
     flip = () => {
       this.setState((state) => ({
         isFront: !state.isFront,
       }));
     };
+
     getColorAndBorder = (row: number, level: number) => {
       if (this.state.bars >= row) {
         return "bg-orangeweboxfordblue-tertiary";
@@ -175,6 +182,7 @@ export default function Review() {
         return "bg-orangeweboxfordblue-quaternary border-dotted";
       }
     };
+
     getWidth = (level: number) => {
       switch (level) {
         case 1:

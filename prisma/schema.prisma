@@ -33,3 +33,4 @@ model DxCard {
   deck            DxDeck    @relation(fields: [deckId], references: [id], onDelete: Cascade)
   @@index([deckId])
 }
+
