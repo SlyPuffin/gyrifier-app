@@ -9,9 +9,10 @@ import puffin from "../../public/puffin.svg"
 
 
 export default function TestPage() {
+    const myName: any = {myname: "Thomas"}
     const sayHi = trpc.useQuery(["say-hi"])
   
-    const jonsey = sayHi.data?.hi ? sayHi.data.hi : "Name Here";
+    const name = sayHi.data?.hi ? sayHi.data.hi : "Anonymous";
 
     useEffect(() => {
         console.log("component mounted")
@@ -19,7 +20,7 @@ export default function TestPage() {
 
     return (
         <div>
-            <button className="bg-green-300 border-green-600 border-b p-4 m-4 rounded">Start {jonsey} </button>
+            <button className="bg-green-300 border-green-600 border-b p-4 m-4 rounded">Start {name} </button>
         </div>
 
     )

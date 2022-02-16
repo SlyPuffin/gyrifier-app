@@ -6,8 +6,9 @@ import { prisma } from "@/backend/utils/prisma";
 export const appRouter = trpc
   .router()
   .query("say-hi", {
-  async resolve() {
-    return {hi: "Hello There"}
+  async resolve( ) {
+    const myname = "Joe"
+    return {hi: `${myname}`}
   }
 })
   .query("get-decks", {
