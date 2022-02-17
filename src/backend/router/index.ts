@@ -24,6 +24,42 @@ export const appRouter = trpc
       });
       return { cards: cardsFromDb };
     },
+  })
+  .mutation("add-card", {
+    input: z.object({
+      front: z.string(),
+      back: z.string(),
+      source: z.string(),
+      xp: z.number(),
+      deckId: z.string()
+    }),
+    async resolve({ input }) {
+      const newCard = await prisma.card.create({
+        data: {
+          front: input.front,
+          back: input.back,
+          source: input.source,
+          xp: input.xp,
+          deckId: input.deckId,
+        }
+      });
+      return newCard;
+    }
+  })
+  .mutation("add-deck", {
+    input: z.object({
+      name: z.string(),
+      type: z.string()
+    }),
+    async resolve({ input }) {
+      const newDeck = await prisma.deck.create({
+        data: {
+          name: input.name,
+          type: input.type
+        }
+      });
+      return newDeck;
+    }
   });
 
 // export type definition of API
