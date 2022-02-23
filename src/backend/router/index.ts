@@ -2,7 +2,6 @@ import * as trpc from "@trpc/server";
 import * as trpcNext from "@trpc/server/adapters/next";
 import { z } from "zod";
 import { prisma } from "@/backend/utils/prisma";
-import { resolve } from "path/posix";
 
 export const appRouter = trpc
   .router()
