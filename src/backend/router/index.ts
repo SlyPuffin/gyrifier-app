@@ -2,12 +2,27 @@ import * as trpc from "@trpc/server";
 import * as trpcNext from "@trpc/server/adapters/next";
 import { z } from "zod";
 import { prisma } from "@/backend/utils/prisma";
+import { resolve } from "path/posix";
 
 export const appRouter = trpc
   .router()
-  .query("get-decks", {
+  .query("get-user", {
+    async resolve() {
+      const userFromDb = await prisma.user.findFirst();
+      return { user: userFromDb };
+    },
+  })
+  .query("get-decks-for-user", {
+    input: z.object({
+      id: z.string(),
+    }),
     async resolve({ input }) {
-      const decksFromDb = await prisma.deck.findMany();
+      const { id } = input;
+      const decksFromDb = await prisma.deck.findMany({
+        where: {
+          userId: id,
+        },
+      });
       return { decks: decksFromDb };
     },
   })
@@ -31,7 +46,7 @@ export const appRouter = trpc
       back: z.string(),
       source: z.string(),
       xp: z.number(),
-      deckId: z.string()
+      deckId: z.string(),
     }),
     async resolve({ input }) {
       const newCard = await prisma.card.create({
@@ -41,25 +56,27 @@ export const appRouter = trpc
           source: input.source,
           xp: input.xp,
           deckId: input.deckId,
-        }
+        },
       });
       return newCard;
-    }
+    },
   })
   .mutation("add-deck", {
     input: z.object({
       name: z.string(),
-      type: z.string()
+      type: z.string(),
+      userId: z.string(),
     }),
     async resolve({ input }) {
       const newDeck = await prisma.deck.create({
         data: {
           name: input.name,
-          type: input.type
-        }
+          type: input.type,
+          userId: input.userId,
+        },
       });
       return newDeck;
-    }
+    },
   });
 
 // export type definition of API

@@ -4,9 +4,18 @@ import Link from "next/link";
 import { Deck } from "@prisma/client";
 
 export default function Home() {
-  const { data, isLoading } = trpc.useQuery(["get-decks"], {
+  const userQuery = trpc.useQuery(["get-user"], {
     refetchOnWindowFocus: false,
   });
+  const { data, isLoading } = trpc.useQuery(
+    [
+      "get-decks-for-user",
+      { id: userQuery.data?.user?.id ? userQuery.data?.user?.id : "" },
+    ],
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
 
   type DeckProps = {
     decks: Deck[];
