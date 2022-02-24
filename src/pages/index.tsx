@@ -7,6 +7,7 @@ export default function Home() {
   const { data, isLoading } = trpc.useQuery(["get-decks"], {
     refetchOnWindowFocus: false,
   });
+  const newDeck = trpc.useMutation('add-deck');
 
   type DeckProps = {
     decks: Deck[];
@@ -24,7 +25,24 @@ export default function Home() {
           </div>
         </Link>
       ));
-      return <ul>{listItems}</ul>;
+      return (
+        <ul>
+          <form onSubmit={async (e) => {
+            e.preventDefault();
+            const name = (e as any).target.elements.name;
+
+            const input = {
+              name: name.value,
+              type: "default"
+            };
+            await newDeck.mutateAsync(input);
+          }}>
+            <input id="name" name="name" className="border-orangeweboxfordblue-border border-4 shadow-2xl text-4xl px-8 py-2 text-orangeweboxfordblue-primary" placeholder="New Deck"/>
+            <input type="submit" className="hidden"/>
+          </form>
+          {listItems}
+        </ul>
+      );
     }
   }
 
