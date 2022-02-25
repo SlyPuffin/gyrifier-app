@@ -12,6 +12,14 @@ generator client {
   previewFeatures = ["referentialIntegrity"]
 }
 
+model User {
+  id              String    @id @default(uuid())
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  name            String    @db.VarChar(255)
+  decks           Deck[]
+}
+
 model Deck {
   id              String    @id @default(uuid())
   createdAt       DateTime  @default(now())
@@ -19,6 +27,9 @@ model Deck {
   type            String    @db.VarChar(255)
   name            String    @db.Text
   cards           Card[]
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
 }
 
 model Card {
