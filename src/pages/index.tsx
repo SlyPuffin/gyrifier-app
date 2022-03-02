@@ -4,19 +4,13 @@ import Link from "next/link";
 import { Deck } from "@prisma/client";
 
 export default function Home() {
-  const userQuery = trpc.useQuery(["get-user"], {
-    refetchOnWindowFocus: false,
-  });
-  const { data, isLoading } = trpc.useQuery(
-    [
-      "get-decks-for-user",
-      { id: userQuery.data?.user?.id ? userQuery.data?.user?.id : "" },
-    ],
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
-  const addDeckMutation = trpc.useMutation('add-deck');
+  return (
+    <button className="text-4xl px-8 py-2 text-orangeweboxfordblue-primary">
+      Landing Page 
+    </button>
+  )
+}
+ 
 
   const [decks, setDecks] = React.useState<Deck[]>(data?.decks || []);
 
