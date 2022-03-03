@@ -22,7 +22,21 @@ export const appRouter = trpc
           userId: id,
         },
       });
-      return { decks: decksFromDb };
+      return { decks: decksFromDb};
+    },
+  })
+  .query("get-name-for-deck", {
+    input: z.object({
+      id: z.string(),
+    }),
+    async resolve({ input }) {
+      const { id } = input;
+      const deque = await prisma.deck.findFirst({
+        where: {
+              id: id
+        },
+      });
+      return {name: deque};
     },
   })
   .query("get-cards-from-deck",
@@ -34,9 +48,24 @@ export const appRouter = trpc
           deckId: id,
         },
       });
-      return { cards: cardsFromDb };
+      return { cards: cardsFromDb};
     },
   })
+  // .query("get-deckname", {
+  //   input: z.object({id: z.string(),}),
+  //   async resolve({ input }) {
+  //     const { id } = input;
+  //     const nameFromDb = await prisma.user.findFirst({
+  //       where: {
+  //         decks: 
+                // {
+                //   some: deckId: id
+                // }
+  //       },
+  //     });
+  //     return { name: nameFromDb };
+  //   },
+  // })
   .mutation("add-card", {
     input: z.object({
       front: z.string(),

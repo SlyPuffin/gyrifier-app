@@ -22,6 +22,7 @@ export default function Review() {
   if (cardQuery.status !== "success") {
     return <>Loading...</>;
   }
+
   const { data } = cardQuery;
   console.log({ data });
   console.log({ cardQuery });
@@ -223,5 +224,9 @@ export default function Review() {
     };
   }
 
-  if (data) return <Card />;
+  if (data) {
+    return (
+      <Card />
+    );
+  }
 }
