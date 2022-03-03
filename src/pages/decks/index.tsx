@@ -65,7 +65,6 @@ export default function Home() {
 
     if (data) {
       const gridProps = {columns: 3, itemType: "deckDisplay", arrayOfCardsOrDecks: data.decks}
-      console.log("in index", gridProps.arrayOfCardsOrDecks)
       return (
         <div className="h-screen w-screen flex justify-center items-center">
           <div className="h-5/6 w-5/6 relative flex justify-center items-center">
@@ -76,7 +75,7 @@ export default function Home() {
               </form>
               {/* <Decks decks={decks} /> */}
             </ul>
-            <GridContainer key={gridProps.columns} props={gridProps}></GridContainer>
+            <GridContainer {...gridProps}></GridContainer>
           </div>
         </div>
       );

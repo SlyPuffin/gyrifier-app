@@ -8,7 +8,7 @@ import Link from "next/link"
 // }
 
 export default function SingleDeck(props: any) {
-    console.log("single deck", props.props)
+    console.log("rendering one deck", props.props.name)
     return (
         <div key={props.props.id}>
             <div className="reviewButton">
