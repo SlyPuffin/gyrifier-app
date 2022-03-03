@@ -38,7 +38,15 @@ function MakeDisplayBar() {
     const {isLoading: alsoIsLoading, data: alsoData, error: alsoError} = trpc.useQuery(["get-name-for-deck", { id: deckID }])
 
     let loadingMessage = "loading or error"
-    if (alsoIsLoading || alsoError) {
+    if (alsoIsLoading) {
+        return (
+            <div className="text-4xl px-8 py-2 text-orangeweboxfordblue-primary">
+                {loadingMessage}
+            </div>
+        )
+    }
+
+    if (alsoError) {
         return (
             <div className="text-4xl px-8 py-2 text-orangeweboxfordblue-primary">
                 {loadingMessage}
