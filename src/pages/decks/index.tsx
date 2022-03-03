@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { Deck } from "@prisma/client";
 import SingleDeck from "../../layouts/SingleDeck"
+import GridContainer from '../../layouts/GridContainer'
 
 export default function Home() {
     const userQuery = trpc.useQuery(["get-user"], {
@@ -61,7 +62,10 @@ export default function Home() {
         </div>
       );
     }
+
     if (data) {
+      const gridProps = {columns: 3, itemType: "deckDisplay", arrayOfCardsOrDecks: data.decks}
+      console.log("in index", gridProps.arrayOfCardsOrDecks)
       return (
         <div className="h-screen w-screen flex justify-center items-center">
           <div className="h-5/6 w-5/6 relative flex justify-center items-center">
@@ -70,8 +74,9 @@ export default function Home() {
                 <input id="name" name="name" className="border-orangeweboxfordblue-border border-4 shadow-2xl text-4xl px-8 py-2 text-orangeweboxfordblue-primary" placeholder="New Deck"/>
                 <input type="submit" className="hidden"/>
               </form>
-              <Decks decks={decks} />
+              {/* <Decks decks={decks} /> */}
             </ul>
+            <GridContainer key={gridProps.columns} props={gridProps}></GridContainer>
           </div>
         </div>
       );
