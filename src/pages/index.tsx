@@ -28,11 +28,10 @@ export default function Home() {
     const input = {
       name: name.value,
       type: "default",
-      userId: userQuery.data?.user?.id
+      userId: userQuery.data?.user?.id || ''
     };
     const deck = await addDeckMutation.mutateAsync(input);
-    decks.push(deck);
-    setDecks([...decks]);
+    setDecks(decks.concat(deck));
     name.value = '';
   }
 
