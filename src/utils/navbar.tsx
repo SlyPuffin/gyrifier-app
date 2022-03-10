@@ -39,5 +39,3 @@ export class Navbar extends Component {
     )
   }
 }
-
-// this does not work with export default class, not sure why. 
