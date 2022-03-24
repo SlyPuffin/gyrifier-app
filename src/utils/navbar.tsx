@@ -7,7 +7,7 @@ import puffin from "../../public/puffin.svg"
 export class Navbar extends Component {
   render() {
     return (
-        <nav className="border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800" style={{backgroundColor: "rgb(20, 33, 61"}}>
+        <nav className="bg- border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           
           <a href="#" className="flex">

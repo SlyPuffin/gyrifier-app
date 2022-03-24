@@ -3,17 +3,25 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      colors: {
-        orangeweboxfordblue: {
-          background: "#FFFFFF",
-          border: "#000000",
-          primary: "#14213D",
-          secondary: "#FFFFFF",
-          tertiary: "#FCA311",
-          quaternary: "#E5E5E5",
+        backgroundColor: {
+          skin: {
+            primary: "var(--primary-fill)",
+            secondary: "var(--secondary-fill)"
+          }
         },
-      },
+        textColor: {
+          skin: {
+            primary: "var(primary-text)",
+            "primary-muted" : "var(primary-text-muted)",
+            secondary: "var(secondary-text)"
+          }
+        },
+        border: {
+          skin: {
+            primary: "var(--border)"
+          }
+        }
+        }
     },
-  },
   plugins: [],
 };
