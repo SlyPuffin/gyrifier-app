@@ -5,11 +5,13 @@
 @layer base {
   :root {
       --border: "#000000", /* black */
-      --primary-fill: "#002147", /* Oxford Blue */
-      --primary-text: "#FFFFFF", /* White */
+      --primary-text: "#002147", /* Oxford Blue */
+      --primary-fill: "#FFFFFF", /* White */
       --primary-text-muted: "#E5E5E5", /* Gray */
       --secondary-fill: "#FCA311", /* Web Orange */
       --secondary-text: "#002147", /* Oxford Blue */
+      --contrast-fill: "#002147", /* Oxford Blue */
+      --contrast-text: #FFFFFF /* White */
     },
   .easter-colors {
 

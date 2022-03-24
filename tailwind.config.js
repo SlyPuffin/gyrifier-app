@@ -6,14 +6,16 @@ module.exports = {
         backgroundColor: {
           skin: {
             primary: "var(--primary-fill)",
-            secondary: "var(--secondary-fill)"
+            secondary: "var(--secondary-fill)",
+            contrast: "var(--contrast-fill)"
           }
         },
         textColor: {
           skin: {
             primary: "var(primary-text)",
             "primary-muted" : "var(primary-text-muted)",
-            secondary: "var(secondary-text)"
+            secondary: "var(secondary-text)",
+            contrast: "var(contrast-text)"
           }
         },
         border: {
