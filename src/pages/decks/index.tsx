@@ -44,8 +44,8 @@ export default function Home() {
     render() {
       return this.props.decks.map((deck) => (
         <Link href={`/decks/practice/${deck.id}`} key={deck.id}>
-          <div className="cursor-pointer bg-orangeweboxfordblue-tertiary border-orangeweboxfordblue-border border-4 shadow-2xl text-4xl">
-            <div className="text-4xl px-8 py-2 text-orangeweboxfordblue-primary">
+          <div className="cursor-pointer bg-skin-secondary border-primary border-4 shadow-2xl text-4xl">
+            <div className="text-4xl px-8 py-2 text-skin-primary">
               <li>{deck.name}</li>
             </div>
           </div>
@@ -58,7 +58,7 @@ export default function Home() {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
         <div className="h-5/6 w-5/6 relative flex justify-center items-center">
-          <div className="cursor-pointer bg-orangeweboxfordblue-tertiary border-orangeweboxfordblue-border border-4 shadow-2xl text-4xl">
+          <div className="cursor-pointer bg-skin-secondary border-skin-primary border-4 shadow-2xl text-4xl">
             No Decks...
           </div>
         </div>
@@ -71,7 +71,7 @@ export default function Home() {
         <div className="h-5/6 w-5/6 relative flex justify-center items-center">
           <ul>
             <form onSubmit={handleDeckSubmit}>
-              <input id="name" name="name" className="border-orangeweboxfordblue-border border-4 shadow-2xl text-4xl px-8 py-2 text-orangeweboxfordblue-primary" placeholder="New Deck"/>
+              <input id="name" name="name" className="border-primary border-4 shadow-2xl text-4xl px-8 py-2 text-skin-primary" placeholder="New Deck"/>
               <input type="submit" className="hidden"/>
             </form>
             <Decks decks={decks} />

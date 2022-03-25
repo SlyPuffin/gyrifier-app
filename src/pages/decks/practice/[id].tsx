@@ -60,14 +60,14 @@ export default function Review() {
         return (
           <div className="h-screen w-screen flex justify-center items-center">
             <div className="h-5/6 w-5/6 relative flex justify-center items-center">
-              <div className="absolute text-orangeweboxfordblue-primary text-5xl shadow-2xl top-1">
+              <div className="absolute text-skin-primary text-5xl shadow-2xl top-1">
                 {data.cards[this.state.cardNumber].source
                   ? data.cards[this.state.cardNumber].source
                   : ""}
               </div>
               <Link href="/">
-                <div className="cursor-pointer absolute bg-orangeweboxfordblue-tertiary border-orangeweboxfordblue-border border-4 shadow-2xl text-4xl top-1 right-1">
-                  <div className="text-4xl px-8 py-2 text-orangeweboxfordblue-primary">
+                <div className="cursor-pointer absolute bg-skin-secondary border-primary border-4 shadow-2xl text-4xl top-1 right-1">
+                  <div className="text-4xl px-8 py-2 text-skin-primary">
                     Back
                   </div>
                 </div>
@@ -76,9 +76,9 @@ export default function Review() {
                 onClick={() => {
                   this.flip();
                 }}
-                className="cursor-pointer relative flex h-4/5 w-4/5 bg-orangeweboxfordblue-primary justify-center items-center border-orangeweboxfordblue-border border-4 shadow-2xl rounded-[9rem]"
+                className="cursor-pointer relative flex h-4/5 w-4/5 bg-skin-contrast justify-center items-center border-primary border-4 shadow-2xl rounded-[9rem]"
               >
-                <div className="text-orangeweboxfordblue-secondary text-5xl">
+                <div className="text-skin-contrast text-5xl">
                   {this.state.isFront
                     ? data.cards[this.state.cardNumber].front
                     : data.cards[this.state.cardNumber].back}
@@ -88,24 +88,24 @@ export default function Review() {
                 onClick={() => {
                   this.next();
                 }}
-                className="cursor-pointer absolute flex w-36 h-36 bottom-[8%] right-[8%] justify-center items-center group bg-orangeweboxfordblue-tertiary border-orangeweboxfordblue-border border-4 shadow-2xl rounded-full"
+                className="cursor-pointer absolute flex w-36 h-36 bottom-[8%] right-[8%] justify-center items-center group bg-skin-secondary border-primary border-4 shadow-2xl rounded-full"
               >
-                <div className="absolute text-8xl text-orangeweboxfordblue-primary visible group-hover:invisible">
+                <div className="absolute text-8xl text-skin-primary visible group-hover:invisible">
                   {this.state.countdown}
                 </div>
-                <div className="absolute text-8xl text-orangeweboxfordblue-primary invisible group-hover:visible">
+                <div className="absolute text-8xl text-skin-primary invisible group-hover:visible">
                   →
                 </div>
               </div>
               <div className="absolute flex flex-row space-x-5 bottom-[8%] left-[8%]">
-                <div className="text-6xl py-2 w-8 text-orangeweboxfordblue-primary">
+                <div className="text-6xl py-2 w-8 text-skin-primary">
                   {this.state.level}
                 </div>
-                <div className="flex flex-row shadow-2xl border-orangeweboxfordblue-border border-l-2 border-y-2">
+                <div className="flex flex-row shadow-2xl border-primary border-l-2 border-y-2">
                   <div
                     className={`${this.getWidth(
                       this.state.level
-                    )} py-10 border-orangeweboxfordblue-border border-r-2 ${this.getColorAndBorder(
+                    )} py-10 border-primary border-r-2 ${this.getColorAndBorder(
                       1,
                       this.state.level
                     )}`}
@@ -113,7 +113,7 @@ export default function Review() {
                   <div
                     className={`${this.getWidth(
                       this.state.level
-                    )} py-10 border-orangeweboxfordblue-border border-r-2 ${this.getColorAndBorder(
+                    )} py-10 border-primary border-r-2 ${this.getColorAndBorder(
                       2,
                       this.state.level
                     )}`}
@@ -121,7 +121,7 @@ export default function Review() {
                   <div
                     className={`${this.getWidth(
                       this.state.level
-                    )} py-10 border-orangeweboxfordblue-border border-r-2 ${this.getColorAndBorder(
+                    )} py-10 border-primary border-r-2 ${this.getColorAndBorder(
                       3,
                       this.state.level
                     )}`}
@@ -130,7 +130,7 @@ export default function Review() {
                     <div
                       className={`${this.getWidth(
                         this.state.level
-                      )} py-10 border-orangeweboxfordblue-border border-r-2 ${this.getColorAndBorder(
+                      )} py-10 border-primary border-r-2 ${this.getColorAndBorder(
                         4,
                         this.state.level
                       )}`}
@@ -140,7 +140,7 @@ export default function Review() {
                     <div
                       className={`${this.getWidth(
                         this.state.level
-                      )} py-10 border-orangeweboxfordblue-border border-r-2 ${this.getColorAndBorder(
+                      )} py-10 border-primary border-r-2 ${this.getColorAndBorder(
                         5,
                         this.state.level
                       )}`}
@@ -170,11 +170,11 @@ export default function Review() {
     };
     getColorAndBorder = (row: number, level: number) => {
       if (this.state.bars >= row) {
-        return "bg-orangeweboxfordblue-tertiary";
+        return "bg-skin-secondary";
       } else if (row - level === 2) {
-        return "bg-orangeweboxfordblue-quaternary";
+        return "bg-skin-muted";
       } else {
-        return "bg-orangeweboxfordblue-quaternary border-dotted";
+        return "bg-skin-muted border-dotted";
       }
     };
     getWidth = (level: number) => {
