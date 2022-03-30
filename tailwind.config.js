@@ -9,20 +9,22 @@ function withOpacityValue(variable) {
 }
 
 module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./src/**/*.{js,ts,jsx,tsx,css}"],
   theme: {
     extend: {
         colors: {
           'regal-blue': '#243c5a',
-        },
-        backgroundColor: {
           skin: {
             primary: withOpacityValue("255,192,203"),
             secondary: withOpacityValue('--secondary-fill'),
-            contrast: "var(--contrast-fill)",
+            "contrast" : 'var(--contrast-fill)',
             muted: "var(--muted-fill)",
-            test: "var(--test-red)"
+            test: "var(--test-red)",
+            oxford: "#002147",
+            wowred: "var(--bright-red)",
           }
+        },
+        backgroundColor: {
         },
         textColor: {
           skin: {

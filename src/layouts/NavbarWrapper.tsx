@@ -4,7 +4,7 @@ import { Navbar } from '@/utils/navbar'
 export default function NavbarWrapper( { children } ) {
   return (
     <>
-    <div className='border-4 theme-2 border-regal-blue'></div>
+    <div className='border-4 border-skin-wowred'></div>
         <Navbar />
         {children}
     </>
