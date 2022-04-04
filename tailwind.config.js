@@ -14,14 +14,15 @@ module.exports = {
     extend: {
         colors: {
           'regal-blue': '#243c5a',
+          james: "var(--bright-red)",
           skin: {
-            primary: withOpacityValue("255,192,203"),
-            secondary: withOpacityValue('--secondary-fill'),
+            primary: "var(--primary-fill)",
+            secondary: "var(--secondary-fill)",
             "contrast" : 'var(--contrast-fill)',
             muted: "var(--muted-fill)",
             test: "var(--test-red)",
             oxford: "#002147",
-            wowred: "var(--bright-red)",
+            wowie: "var(--fun-zany)",
           }
         },
         backgroundColor: {
@@ -32,11 +33,6 @@ module.exports = {
             "primary-muted" : "var(primary-text-muted)",
             secondary: "var(secondary-text)",
             contrast: "var(contrast-text)"
-          }
-        },
-        border: {
-          skin: {
-            primary: "var(--test-red)"
           }
         },
         }

@@ -7,7 +7,7 @@ import puffin from "../../public/puffin.svg"
 export class Navbar extends Component {
   render() {
     return (
-        <nav className="bg-skin-wowred px-2 sm:px-4 py-2.5">
+        <nav className="bg-skin-secondary px-2 sm:px-4 py-2.5">
           <div className="container flex flex-wrap justify-between items-center mx-auto border-primary border-8">
           
           <a href="#" className="flex">

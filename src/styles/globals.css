@@ -2,31 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  --borderhard: 255,192,203; /* black */
-  --primary-text: 0, 33, 71; /* Oxford Blue */
-  --primary-fill: 255, 255, 255; /* White */
-  --primary-text-muted: "#E5E5E5"; /* Gray */
-  --secondary-fill: 252, 163, 17; /* Web Orange */
-  --secondary-text: "#002147"; /* Oxford Blue */
-  --contrast-fill: "#002147"; /* Oxford Blue */
+:root {
+  --borderhard: #000000; /* black */
+  --primary-text: #002147; /* Oxford Blue */
+  --primary-fill: #FFFFFF; /* White */
+  --primary-text-muted: #8a6f6f; /* Gray */
+  --secondary-fill: #FF8C00; /* Web Orange */
+  --secondary-text: #002147; /* Oxford Blue */
+  --contrast-fill: #002147; /* Oxford Blue */
   --contrast-text: #FFFFFF; /* White */
-  --muted-fill: "#e5e5e5"; /* Gray */
+  --muted-fill: #542d2d; /* Gray */
+  --bright-red: #FF0000;
+}
+
+.easter {
+  --borderhard: #000000; /* black */
+  --primary-text: #533c3f; /* Brown */
+  --primary-fill: #c1fffd; /* Celeste */
+  --primary-text-muted: #935fa7; /* Gray */
+  --secondary-fill: #FACBD6; /* Web Orange */
+  --secondary-text: #1c0055; /*  */
+  --contrast-fill: #554489; /*  */
+  --contrast-text: #c1fffd; /* White */
+  --muted-fill: #542d2d; /* Gray */
   --bright-red: #FF0000;
 }
 
 @layer base {
   :root {
-      --borderhard: 255,192,203; /* black */
-      --primary-text: 0, 33, 71; /* Oxford Blue */
-      --primary-fill: 255, 255, 255; /* White */
-      --primary-text-muted: "#E5E5E5"; /* Gray */
-      --secondary-fill: 252, 163, 17; /* Web Orange */
-      --secondary-text: "#002147"; /* Oxford Blue */
-      --contrast-fill: "#002147"; /* Oxford Blue */
-      --contrast-text: #FFFFFF; /* White */
-      --muted-fill: "#e5e5e5"; /* Gray */
-      --bright-red: #FF0000;
     }
   .theme-2 {
   }
