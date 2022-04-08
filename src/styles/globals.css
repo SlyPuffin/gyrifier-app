@@ -28,6 +28,10 @@
   --bright-red: #FF0000;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 @layer base {
   :root {
     }

@@ -29,10 +29,10 @@ module.exports = {
         },
         textColor: {
           skin: {
-            primary: "var(primary-text)",
-            "primary-muted" : "var(primary-text-muted)",
-            secondary: "var(secondary-text)",
-            contrast: "var(contrast-text)"
+            primary: "var(--primary-text)",
+            "primary-muted" : "var(--primary-text-muted)",
+            secondary: "var(--secondary-text)",
+            contrast: "var(--contrast-text)"
           }
         },
         }
