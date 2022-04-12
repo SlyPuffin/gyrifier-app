@@ -10,10 +10,15 @@ export default function NavbarWrapper({ children }) {
     toggleEaster(isEaster => !isEaster)
   }
 
+  let propsObj = {
+    changeTheme: changeTheme, 
+    isEaster: isEaster
+  }
+
   return (
     <>
-      <div className={`border-4 ${isEaster? "easter" : ""} border-skin-muted h-screen`}>
-        <Navbar handler={changeTheme}></Navbar>
+      <div className={`border-4 ${isEaster? "easter" : ""} border-skin-muted bg-skin-primary h-screen`}>
+        <Navbar {...propsObj}></Navbar>
         {children}
       </div>
     </>

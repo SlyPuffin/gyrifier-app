@@ -21,9 +21,15 @@ module.exports = {
           test: "var(--test-red)",
           oxford: "#002147",
           wowie: "var(--fun-zany)",
+          special: "var(--bright-special)"
         }
       },
-      backgroundColor: {
+      borderColor: {
+        skin: {
+          primary: "var(--primary-border)",
+          secondary: "var(--secondary-border)",
+          muted: "var(--muted-border)"
+        }
       },
       textColor: {
         skin: {

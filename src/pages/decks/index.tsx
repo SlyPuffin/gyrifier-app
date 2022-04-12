@@ -58,7 +58,7 @@ export default function Home() {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
         <div className="h-5/6 w-5/6 relative flex justify-center items-center">
-          <div className="cursor-pointer bg-skin-secondary border-skin-primary border-4 shadow-2xl text-4xl">
+          <div className="cursor-pointer bg-skin-secondary border-skin-secondary border-4 shadow-2xl text-4xl text-skin-secondary">
             No Decks...
           </div>
         </div>
