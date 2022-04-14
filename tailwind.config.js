@@ -21,7 +21,8 @@ module.exports = {
           test: "var(--test-red)",
           oxford: "#002147",
           wowie: "var(--fun-zany)",
-          special: "var(--bright-special)"
+          special: "var(--bright-special)",
+          logo: "var(--secondary-text)"
         }
       },
       borderColor: {
