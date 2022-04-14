@@ -3,6 +3,7 @@ import { trpc } from "@/utils/trpc";
 import Link from "next/link";
 import Image from "next/image"
 import puffin from "../../public/puffin.svg"
+import altpuffin from "../../public/altpuffin.svg"
 
 
 
@@ -26,7 +27,7 @@ export class Navbar extends Component {
       <nav className="bg-skin-secondary px-2 sm:px-4 py-2.5">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <a href="#" className="flex">
-            <Image src={puffin} height={30} width={30}></Image>
+            <Image src={altpuffin} height={50} width={50}></Image>
             <span className="self-center text-lg font-semibold whitespace-nowrap text-skin-secondary">Gyrifier</span>
           </a>
           <button data-collapse-toggle="mobile-menu" type="button" className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100">
