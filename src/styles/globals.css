@@ -9,8 +9,8 @@
   --primary-text-muted: #8a6f6f; /* Gray */
   --secondary-fill: #002147;/* Oxford Blue */
   --secondary-text: #FF8C00; /* Web Orange */ 
-  --contrast-fill: #002147; /* Oxford Blue */
-  --contrast-text: #FFFFFF; /* White */
+  --contrast-fill: #FF8C00; /* Oxford Blue */
+  --contrast-text: #002147; /* White */
   --muted-fill: #542d2d; /* Gray */
   --bright-special: #FF0000;
   --primary-border: #002147;
