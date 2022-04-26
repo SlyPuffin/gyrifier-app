@@ -9,7 +9,8 @@ export class Navbar extends Component {
   }
 
   dealWithClick() {
-    this.props.changeTheme()
+    let themeSelector = document.getElementById("theme")
+    this.props.changeTheme(themeSelector.value)
   }
 
   currentTheme() {
@@ -25,11 +26,11 @@ export class Navbar extends Component {
             <span className="pl-5 self-center text-lg font-semibold whitespace-nowrap text-skin-secondary">Gyrifier</span>
           </a>
           <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
-            <div className={`md:hover:text-skin-muted text-skin-secondary ${this.currentTheme() ? "bg-skin-special rounded-md px-1" : ""}`} onClick={this.dealWithClick}>
+            <div className={`md:hover:text-skin-muted text-skin-secondary ${this.currentTheme() ? "bg-skin-special rounded-md px-1" : ""}`}>
               <label htmlFor="theme">
-                <select name="theme" id="theme">
+                <select name="theme" id="theme" onChange={this.dealWithClick}>
                   <option value="easter">Easter</option>
-                  <option value="classic">Classic</option>
+                  <option value="classic">Default</option>
                   <option value="quirky">Quirky</option>
                 </select>
               </label>

@@ -6,8 +6,8 @@ export default function NavbarWrapper({ children }) {
 
   const [currentTheme, toggleTheme] = useState(false);
 
-  const changeTheme = () => {
-    toggleTheme(currentTheme => !currentTheme)
+  const changeTheme = (option) => {
+    toggleTheme(option)
   }
 
   let propsObj = {
