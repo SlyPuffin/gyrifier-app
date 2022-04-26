@@ -12,8 +12,8 @@ export class Navbar extends Component {
     this.props.changeTheme()
   }
 
-  checkEaster() {
-    return this.props.isEaster
+  currentTheme() {
+    return this.props.currentTheme
   }
 
   render() {
@@ -25,8 +25,14 @@ export class Navbar extends Component {
             <span className="pl-5 self-center text-lg font-semibold whitespace-nowrap text-skin-secondary">Gyrifier</span>
           </a>
           <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
-            <div className={`md:hover:text-skin-muted text-skin-secondary ${this.checkEaster() ? "bg-skin-special rounded-md px-1" : ""}`} onClick={this.dealWithClick}>
-              Easterize
+            <div className={`md:hover:text-skin-muted text-skin-secondary ${this.currentTheme() ? "bg-skin-special rounded-md px-1" : ""}`} onClick={this.dealWithClick}>
+              <label htmlFor="theme">
+                <select name="theme" id="theme">
+                  <option value="easter">Easter</option>
+                  <option value="classic">Classic</option>
+                  <option value="quirky">Quirky</option>
+                </select>
+              </label>
             </div>
             <Link href="/" >
               <a className="y-2 pr-4 pl-3 text-skin-secondary md:hover:bg-transparent md:border-0 md:hover:text-skin-muted md:p-0  " aria-current="page">Home</a>

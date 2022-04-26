@@ -4,20 +4,20 @@ import { Navbar } from '@/utils/navbar'
 
 export default function NavbarWrapper({ children }) {
 
-  const [isEaster, toggleEaster] = useState(false);
+  const [currentTheme, toggleTheme] = useState(false);
 
   const changeTheme = () => {
-    toggleEaster(isEaster => !isEaster)
+    toggleTheme(currentTheme => !currentTheme)
   }
 
   let propsObj = {
     changeTheme: changeTheme, 
-    isEaster: isEaster
+    currentTheme: currentTheme
   }
 
   return (
     <>
-      <div className={`border-4 ${isEaster? "easter" : ""} border-skin-muted bg-skin-primary h-screen`}>
+      <div className={`border-4 ${currentTheme || ""} border-skin-muted bg-skin-primary h-screen`}>
         <Navbar {...propsObj}></Navbar>
         {children}
       </div>
