@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Navbar } from '@/utils/navbar'
 
 
-export default function NavbarWrapper({ children }) {
+export default function Layout({ children }) {
 
   const [currentTheme, toggleTheme] = useState(false);
 
