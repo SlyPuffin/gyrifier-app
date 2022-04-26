@@ -54,7 +54,7 @@ export default function Home() {
     }
   }
 
-  if (isLoading || !data) {
+  if (isLoading) {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
         <div className="h-5/6 w-5/6 relative flex justify-center items-center">
