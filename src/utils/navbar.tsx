@@ -26,12 +26,33 @@ export class Navbar extends Component {
             <span className="pl-5 self-center text-lg font-semibold whitespace-nowrap text-skin-secondary">Gyrifier</span>
           </a>
           <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
-            <div className={`md:hover:text-skin-muted text-skin-secondary ${this.currentTheme() ? "bg-skin-special rounded-md px-1" : ""}`}>
+            <div className={`md:hover:text-skin-muted text-skin-secondary`}>
               <label htmlFor="theme">
-                <select name="theme" id="theme" onChange={this.dealWithClick}>
-                  <option value="easter">Easter</option>
-                  <option value="classic">Default</option>
-                  <option value="quirky">Quirky</option>
+                <select name="theme" id="theme" className="form-select appearance-none
+                                  block
+                                  w-full
+                                  px-3
+                                  py-1.5
+                                  font-normal
+                                  hover:text-skin-contrast
+                                  hover:bg-skin-contrast
+                                  border 
+                                  border-solid
+                                  rounded
+                                  transition
+                                  ease-in-out
+                                  m-0
+                                  text-skin-secondary
+                                  bg-skin-secondary 
+                                  border-skin-secondary 
+                                  outline-none"
+                  onChange={this.dealWithClick}>
+                  <optgroup label="Color Scheme">
+                    <option selected disabled hidden>Theme</option>
+                    <option value="easter">Easter</option>
+                    <option value="classic">Default</option>
+                    <option value="quirky">Quirky</option>
+                  </optgroup>
                 </select>
               </label>
             </div>
