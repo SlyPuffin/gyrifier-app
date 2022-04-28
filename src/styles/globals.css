@@ -2,7 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
+:root {
+  --borderhard: #000000; /* black */
+  --primary-text: #002147; /* Oxford Blue */
+  --primary-fill: #FFFFFF; /* White */
+  --primary-text-muted: #8a6f6f; /* Gray */
+  --secondary-fill: #002147;/* Oxford Blue */
+  --secondary-text: #FF8C00; /* Web Orange */ 
+  --contrast-fill: #FF8C00; /* Oxford Blue */
+  --contrast-text: #002147; /* White */
+  --muted-fill: #542d2d; /* Gray */
+  --bright-special: #FF0000;
+  --primary-border: #002147;
+  --secondary-border: #FF8C00;
+  --muted-border: #8a6f6f;
+}
+
+.easter {
+  --borderhard: #000000; /* black */
+  --primary-text: #533c3f; /* Brown */
+  --primary-fill: #c1fffdab; /* Celeste */
+  --primary-text-muted: #935fa7; /* Gray */
+  --secondary-fill: #FACBD6; /* Web Orange */
+  --secondary-text: #1c0055; /*  */
+  --contrast-fill: #554489; /*  */
+  --contrast-text: #c1fffd; /* White */
+  --muted-fill: #542d2d; /* Gray */
+  --bright-special: #d027ca;
+  --primary-border: #002147;
+  --secondary-border: #1c0055;
+  --muted-border: #8a6f6f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@layer base {
+  :root {
+    }
+  .theme-2 {
+  }
+}
+
+/* html,
 body {
   @apply text-white bg-orangeweboxfordblue-background;
-}
+} */
+
+/* I think this application is discouraged in favor of applying this to the respective layer */
+
+/* In reference to apply from the docs "Honestly though the best solution is to just not do weird stuff like this at all. Use Tailwind’s utilities directly in your markup the way they are intended to be used, and don’t abuse the @apply feature to do things like this and you will have a much better experience. */

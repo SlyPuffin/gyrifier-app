@@ -1,12 +1,12 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import NavbarWrapper from "../layouts/NavbarWrapper";
+import Layout from "../layouts/Layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <NavbarWrapper>
+    <Layout>
        <Component {...pageProps} />
-    </NavbarWrapper>
+    </Layout>
   )
 }
 
