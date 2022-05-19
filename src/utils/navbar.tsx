@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Link from "next/link";
+import { useFetchUser } from "../../auth/user";
 
 export class Navbar extends Component {
   constructor(props: any) {
@@ -11,7 +12,7 @@ export class Navbar extends Component {
   }
 
   changeTheme() {
-    let themeSelector = document.getElementById("theme");
+   let themeSelector = document.getElementById("theme");
     this.props.changeTheme(themeSelector.value);
   }
 
