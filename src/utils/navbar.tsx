@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import Link from "next/link";
-import { useFetchUser } from "../../auth/user";
+import { useFetchUser } from "@/auth/user";
 
 export class Navbar extends Component {
   constructor(props: any) {
