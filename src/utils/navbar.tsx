@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useCallback } from "react";
 import Link from "next/link";
 import { useFetchUser } from "../../auth/user";
 
@@ -111,7 +111,7 @@ export class Navbar extends Component {
                 target="_"
                 className="mb-2 w-full rounded border border-skin-secondary py-2 pr-4 pl-4 text-center text-skin-secondary hover:bg-skin-contrast hover:text-skin-contrast  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
               >
-                Git
+                Login
               </a>
             </ul>
           </div>
