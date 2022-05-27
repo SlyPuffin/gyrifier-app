@@ -15,12 +15,6 @@ export class Navbar extends Component {
     this.props.changeTheme(themeSelector.value);
   }
 
-  // can this be removed, below? Redundant
-
-  currentTheme() {
-    return this.props.currentTheme;
-  }
-
   toggleMenu() {
     this.setState((prevState) => (
      {
