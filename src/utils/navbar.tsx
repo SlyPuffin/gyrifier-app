@@ -66,19 +66,20 @@ export class Navbar extends Component {
               </button>
             </div>
 
-          <div id="menuitems" className={`${this.state.menushown ? "hidden" : ""} w-full md:block md:w-auto`}>
+          <div id="menuitems" className={`${this.state.menushown ? "hidden" : ""} w-full h-screen md:block md:w-auto`}>
             <ul
             className= "mt-4 w-full items-center flex flex-col md:w-auto md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-medium"
             >
               <div
                 id="themeselect"
-                className="text-skin-secondary md:hover:text-skin-muted"
+                className="text-skin-secondary md:hover:text-skin-muted w-full"
               >
                 <label htmlFor="theme">
                   <select
                     name="theme"
                     id="theme"
                     className="form-select m-0
+                    py-2 pr-4 pl-4
                                     flex
                                     w-full
                                     appearance-none
@@ -110,26 +111,24 @@ export class Navbar extends Component {
               </div>
               <Link href="/">
                 <a
-                  className="y-2 pr-4 pl-3 text-skin-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
+                  className="text-center w-full rounded py-2 pr-4 pl-4 border border-skin-secondary text-skin-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
                   aria-current="page"
                 >
                   Home
                 </a>
               </Link>
               <Link href="/decks">
-                <a className="block py-2 pr-4 pl-3 text-skin-secondary  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  ">
+                <a className="w-full text-center rounded py-2 pr-4 pl-4 border border-skin-secondary text-skin-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  ">
                   Decks
                 </a>
               </Link>
-              <li>
-                <a
-                  href="https://github.com/SlyPuffin/gyrifier-app"
-                  target="_"
-                  className="block border-b py-2 pr-4 pl-3 text-skin-secondary  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
-                >
-                  Git
-                </a>
-              </li>
+              <a
+                href="https://github.com/SlyPuffin/gyrifier-app"
+                target="_"
+                className="w-full text-center rounded border border-skin-secondary py-2 pr-4 pl-4 text-skin-secondary  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
+              >
+                Git
+              </a>
             </ul>
           </div>
         </div>
