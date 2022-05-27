@@ -72,7 +72,7 @@ export class Navbar extends Component {
             >
               <div
                 id="themeselect"
-                className="text-skin-secondary md:hover:text-skin-muted w-full"
+                className="text-skin-secondary mb-2 md:hover:text-skin-muted w-full"
               >
                 <label htmlFor="theme">
                   <select
@@ -111,21 +111,24 @@ export class Navbar extends Component {
               </div>
               <Link href="/">
                 <a
-                  className="text-center w-full rounded py-2 pr-4 pl-4 border border-skin-secondary text-skin-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
+                  className=" hover:bg-skin-contrast
+                  hover:text-skin-contrast text-center mb-2 w-full rounded py-2 pr-4 pl-4 border border-skin-secondary text-skin-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
                   aria-current="page"
                 >
                   Home
                 </a>
               </Link>
               <Link href="/decks">
-                <a className="w-full text-center rounded py-2 pr-4 pl-4 border border-skin-secondary text-skin-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  ">
+                <a className=" hover:bg-skin-contrast
+                                    hover:text-skin-contrast w-full text-center mb-2 rounded py-2 pr-4 pl-4 border border-skin-secondary text-skin-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  ">
                   Decks
                 </a>
               </Link>
               <a
                 href="https://github.com/SlyPuffin/gyrifier-app"
                 target="_"
-                className="w-full text-center rounded border border-skin-secondary py-2 pr-4 pl-4 text-skin-secondary  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
+                className="  hover:bg-skin-contrast
+                hover:text-skin-contrast w-full mb-2 text-center rounded border border-skin-secondary py-2 pr-4 pl-4 text-skin-secondary  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
               >
                 Git
               </a>
