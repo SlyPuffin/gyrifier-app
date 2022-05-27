@@ -4,23 +4,21 @@ import Link from "next/link";
 export class Navbar extends Component {
   constructor(props: any) {
     super(props);
-    this.dealWithClick = this.dealWithClick.bind(this);
+    this.changeTheme = this.changeTheme.bind(this);
     this.state = {
-      menushown: true
-    }
+      menushown: true,
+    };
   }
 
-  dealWithClick() {
+  changeTheme() {
     let themeSelector = document.getElementById("theme");
     this.props.changeTheme(themeSelector.value);
   }
 
   toggleMenu() {
-    this.setState((prevState) => (
-     {
-       menushown: !prevState.menushown
-     }
-   ))
+    this.setState((prevState) => ({
+      menushown: !prevState.menushown,
+    }));
   }
 
   render() {
@@ -45,53 +43,41 @@ export class Navbar extends Component {
           </a>
 
           <div id="menubutton" className="flex items-center md:hidden">
-              <button onClick={this.toggleMenu.bind(this)} className="mobile-menu-button outline-none">
-                <svg
-                  className="h-6 w-6 stroke-skin-logo"
-                  x-show="!showMenu"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-              </button>
-            </div>
-
-          <div id="menuitems" className={`${this.state.menushown ? "hidden" : ""} w-full h-screen md:h-auto md:block md:w-auto`}>
-            <ul
-            className= "mt-4 w-full items-center flex flex-col md:w-auto md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-medium"
+            <button
+              onClick={this.toggleMenu.bind(this)}
+              className="mobile-menu-button outline-none"
             >
+              <svg
+                className="h-6 w-6 stroke-skin-logo"
+                x-show="!showMenu"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div
+            id="menuitems"
+            className={`${
+              this.state.menushown ? "hidden" : ""
+            } h-screen w-full md:block md:h-auto md:w-auto`}
+          >
+            <ul className="mt-4 flex w-full flex-col items-center md:mt-0 md:w-auto md:flex-row md:space-x-8 md:text-sm md:font-medium">
               <div
                 id="themeselect"
-                className="text-skin-secondary mb-2 md:hover:text-skin-muted w-full"
+                className="mb-2 w-full text-skin-secondary md:hover:text-skin-muted"
               >
                 <label htmlFor="theme">
                   <select
                     name="theme"
                     id="theme"
-                    className="form-select m-0
-                    py-2 pr-4 pl-4
-                                    flex
-                                    md:w-auto
-                                    w-full
-                                    appearance-none
-                                    rounded
-                                    border
-                                    border-solid
-                                    border-skin-secondary
-                                    bg-skin-secondary
-                                    text-center
-                                    font-normal
-                                    text-skin-secondary
-                                    outline-none
-                                    transition
-                                    ease-in-out
-                                    hover:bg-skin-contrast
-                                    hover:text-skin-contrast"
-                    onChange={this.dealWithClick}
+                    className="form-select m-0 flex w-full appearance-none rounded border border-solid border-skin-secondary bg-skin-secondary py-2 pr-4 pl-4 text-center font-normal text-skin-secondary outline-none transition ease-in-out hover:bg-skin-contrast hover:text-skin-contrast md:w-auto"
+                    onChange={this.changeTheme}
                   >
                     <optgroup label="Color Scheme">
                       <option selected disabled hidden>
@@ -106,24 +92,26 @@ export class Navbar extends Component {
               </div>
               <Link href="/">
                 <a
-                  className=" hover:bg-skin-contrast
-                  hover:text-skin-contrast text-center mb-2 w-full rounded py-2 pr-4 pl-4 border border-skin-secondary text-skin-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
+                  className=" mb-2
+                  w-full rounded border border-skin-secondary py-2 pr-4 pl-4 text-center text-skin-secondary hover:bg-skin-contrast hover:text-skin-contrast md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
                   aria-current="page"
                 >
                   Home
                 </a>
               </Link>
               <Link href="/decks">
-                <a className=" hover:bg-skin-contrast
-                                    hover:text-skin-contrast w-full text-center mb-2 rounded py-2 pr-4 pl-4 border border-skin-secondary text-skin-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  ">
+                <a
+                  className=" mb-2
+                                    w-full rounded border border-skin-secondary py-2 pr-4 pl-4 text-center text-skin-secondary hover:bg-skin-contrast hover:text-skin-contrast md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
+                >
                   Decks
                 </a>
               </Link>
               <a
                 href="https://github.com/SlyPuffin/gyrifier-app"
                 target="_"
-                className="  hover:bg-skin-contrast
-                hover:text-skin-contrast w-full mb-2 text-center rounded border border-skin-secondary py-2 pr-4 pl-4 text-skin-secondary  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
+                className="  mb-2
+                w-full rounded border border-skin-secondary py-2 pr-4 pl-4 text-center text-skin-secondary hover:bg-skin-contrast hover:text-skin-contrast  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
               >
                 Git
               </a>
