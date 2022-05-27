@@ -92,8 +92,7 @@ export class Navbar extends Component {
               </div>
               <Link href="/">
                 <a
-                  className=" mb-2
-                  w-full rounded border border-skin-secondary py-2 pr-4 pl-4 text-center text-skin-secondary hover:bg-skin-contrast hover:text-skin-contrast md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
+                  className=" mb-2 w-full rounded border border-skin-secondary py-2 pr-4 pl-4 text-center text-skin-secondary hover:bg-skin-contrast hover:text-skin-contrast md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
                   aria-current="page"
                 >
                   Home
@@ -101,8 +100,7 @@ export class Navbar extends Component {
               </Link>
               <Link href="/decks">
                 <a
-                  className=" mb-2
-                                    w-full rounded border border-skin-secondary py-2 pr-4 pl-4 text-center text-skin-secondary hover:bg-skin-contrast hover:text-skin-contrast md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
+                  className=" mb-2 w-full rounded border border-skin-secondary py-2 pr-4 pl-4 text-center text-skin-secondary hover:bg-skin-contrast hover:text-skin-contrast md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
                 >
                   Decks
                 </a>
@@ -110,8 +108,7 @@ export class Navbar extends Component {
               <a
                 href="https://github.com/SlyPuffin/gyrifier-app"
                 target="_"
-                className="  mb-2
-                w-full rounded border border-skin-secondary py-2 pr-4 pl-4 text-center text-skin-secondary hover:bg-skin-contrast hover:text-skin-contrast  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
+                className="mb-2 w-full rounded border border-skin-secondary py-2 pr-4 pl-4 text-center text-skin-secondary hover:bg-skin-contrast hover:text-skin-contrast  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
               >
                 Git
               </a>
