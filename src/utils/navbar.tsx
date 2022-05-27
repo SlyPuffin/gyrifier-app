@@ -53,7 +53,7 @@ export class Navbar extends Component {
           <div id="menubutton" className="flex items-center md:hidden">
               <button onClick={this.toggleMenu.bind(this)} className="mobile-menu-button outline-none">
                 <svg
-                  className="h-6 w-6 stroke-blue-500 text-gray-500"
+                  className="h-6 w-6 stroke-skin-logo"
                   x-show="!showMenu"
                   fill="none"
                   strokeLinecap="round"
@@ -66,7 +66,7 @@ export class Navbar extends Component {
               </button>
             </div>
 
-          <div id="menuitems" className={`${this.state.menushown ? "hidden" : ""} w-full h-screen md:block md:w-auto`}>
+          <div id="menuitems" className={`${this.state.menushown ? "hidden" : ""} w-full h-screen md:h-auto md:block md:w-auto`}>
             <ul
             className= "mt-4 w-full items-center flex flex-col md:w-auto md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-medium"
             >
@@ -81,6 +81,7 @@ export class Navbar extends Component {
                     className="form-select m-0
                     py-2 pr-4 pl-4
                                     flex
+                                    md:w-auto
                                     w-full
                                     appearance-none
                                     rounded
