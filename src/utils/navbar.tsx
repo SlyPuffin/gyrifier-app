@@ -5,6 +5,9 @@ export class Navbar extends Component {
   constructor(props: any) {
     super(props);
     this.dealWithClick = this.dealWithClick.bind(this);
+    this.state = {
+      menushown: false
+    }
   }
 
   dealWithClick() {
@@ -12,8 +15,18 @@ export class Navbar extends Component {
     this.props.changeTheme(themeSelector.value);
   }
 
+  // can this be removed, below? Redundant
+
   currentTheme() {
     return this.props.currentTheme;
+  }
+
+  toggleMenu() {
+    this.setState((prevState) => (
+     {
+       menushown: !prevState.menushown
+     }
+   ))
   }
 
   render() {
@@ -38,7 +51,7 @@ export class Navbar extends Component {
           </a>
 
           <div id="menubutton" className="flex items-center md:hidden">
-              <button className="mobile-menu-button outline-none">
+              <button onClick={this.toggleMenu.bind(this)} className="mobile-menu-button outline-none">
                 <svg
                   className="h-6 w-6 stroke-blue-500 text-gray-500"
                   x-show="!showMenu"
@@ -55,7 +68,7 @@ export class Navbar extends Component {
 
           <ul
             id="menuitems"
-            className="mt-4 w-full items-center flex flex-col md:w-auto md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-medium"
+            className={`${this.state.menushown ? "" : "hidden"} mt-4 w-full items-center flex flex-col md:w-auto md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-medium`}
           >
             
             <div
