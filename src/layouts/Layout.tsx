@@ -17,11 +17,12 @@ export default function Layout({ children }) {
 
   return (
     <>
-      <div className={`border-4 ${currentTheme || ""} border-skin-muted bg-skin-primary h-screen`}>
+      <div className={`${currentTheme || ""} bg-skin-primary h-screen`}>
         <Navbar {...propsObj}></Navbar>
         {children}
       </div>
     </>
   )
 }
+
 
