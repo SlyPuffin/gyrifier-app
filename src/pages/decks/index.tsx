@@ -1,12 +1,16 @@
 import { trpc } from "@/utils/trpc";
 import React, { useState } from "react";
 import Link from "next/link";
-import { Deck } from "@prisma/client";
+import { useFetchUser } from "@/auth/user";
 
 export default function Home() {
-  const userQuery = trpc.useQuery(["get-user"], {
-    refetchOnWindowFocus: false,
-  });
+  const { user, loading } = useFetchUser();
+  const userQuery = trpc.useQuery(
+    ["get-user", { email: user?.name ? user?.name : "" }],
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
   const { data, isLoading } = trpc.useQuery(
     [
       "get-decks-for-user",
@@ -16,7 +20,7 @@ export default function Home() {
       refetchOnWindowFocus: false,
     }
   );
-  const addDeckMutation = trpc.useMutation('add-deck');
+  const addDeckMutation = trpc.useMutation("add-deck");
 
   const [decks, setDecks] = React.useState<Deck[]>(data?.decks || []);
 
@@ -28,12 +32,12 @@ export default function Home() {
     const input = {
       name: name.value,
       type: "default",
-      userId: userQuery.data?.user?.id || ''
+      userId: userQuery.data?.user?.id || "",
     };
     const deck = await addDeckMutation.mutateAsync(input);
     setDecks(decks.concat(deck));
-    name.value = '';
-  }
+    name.value = "";
+  };
 
   type DeckProps = {
     decks: Deck[];
@@ -54,25 +58,43 @@ export default function Home() {
     }
   }
 
-  if (isLoading) {
+  if (loading || (user && isLoading)) {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
         <div className="h-5/6 w-5/6 relative flex justify-center items-center">
           <div className="cursor-pointer bg-skin-secondary border-skin-secondary border-4 shadow-2xl text-4xl text-skin-secondary">
-            No Decks...
+            Loading
           </div>
         </div>
       </div>
     );
   }
-  if (data) {
+  if (!loading && !user) {
+    return (
+      <div className="h-2/3 w-screen flex justify-center items-center">
+        <div className="text-3xl px-8 py-2 text-skin-primary">
+          Please{" "}
+          <i className="text-skin-secondary md:hover:text-skin-muted">
+            <a href="/api/login">Login</a>
+          </i>{" "}
+          to start studying.
+        </div>
+      </div>
+    );
+  }
+  if (data && user) {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
         <div className="h-5/6 w-5/6 relative flex justify-center items-center">
           <ul>
             <form onSubmit={handleDeckSubmit}>
-              <input id="name" name="name" className="border-primary border-4 shadow-2xl text-4xl px-8 py-2 text-skin-primary" placeholder="New Deck"/>
-              <input type="submit" className="hidden"/>
+              <input
+                id="name"
+                name="name"
+                className="border-primary border-4 shadow-2xl text-4xl px-8 py-2 text-skin-primary"
+                placeholder="New Deck"
+              />
+              <input type="submit" className="hidden" />
             </form>
             <Decks decks={decks} />
           </ul>

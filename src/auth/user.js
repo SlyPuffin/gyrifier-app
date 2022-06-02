@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { prisma } from "@/backend/utils/prisma";
 
 export async function fetchUser(cookie = "") {
   if (typeof window !== "undefined" && window.__user) {
@@ -52,41 +51,6 @@ export function useFetchUser({ required } = {}) {
       fetchUser().then((user) => {
         console.log("user!");
         console.log(user);
-        prisma.user
-          .findUnique({
-            where: {
-              email: user.name,
-            },
-          })
-          .then((userFromDb) => {
-            if (!userFromDb) {
-              console.log("no user from db...");
-              prisma.user.create({
-                data: {
-                  name: user.nickname,
-                  email: user.name,
-                  decks: {
-                    create: [
-                      {
-                        type: "concept",
-                        name: "Starter Deck",
-                        cards: {
-                          create: [
-                            {
-                              front: "Front",
-                              back: "Back",
-                              source: "Source",
-                              xp: 0.0,
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              });
-            }
-          });
         // Only set the user if the component is still mounted
         if (isMounted) {
           // When the user is not logged in but login is required
