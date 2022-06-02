@@ -6,16 +6,8 @@ import { prisma } from "@/backend/utils/prisma";
 export const appRouter = trpc
   .router()
   .query("get-user", {
-    input: z.object({
-      email: z.string(),
-    }),
-    async resolve({ input }) {
-      const { email } = input;
-      const userFromDb = await prisma.user.findUnique({
-        where: {
-          email: email,
-        },
-      });
+    async resolve() {
+      const userFromDb = await prisma.user.findFirst();
       return { user: userFromDb };
     },
   })

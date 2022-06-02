@@ -5,8 +5,8 @@ import Link from "next/link";
 export default function Home() {
   const { user, loading } = useFetchUser();
   return (
-    <>
-      <button className="text-4xl px-8 py-2 text-skin-primary w-full md:h-full">
+    <div className="w-full md:h-full">
+      <button className="text-4xl px-8 py-2 text-skin-primary">
         Landing Page
       </button>
       {loading && <p>Loading login info...</p>}
@@ -35,6 +35,6 @@ export default function Home() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
