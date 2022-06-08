@@ -32,19 +32,18 @@ export function Navbar(props) {
           </a>
           {!loading &&
             (user ? (
-              <a
-                className="block py-2 pr-4 pl-3 text-skin-secondary border-b  md:hover:bg-transparent md:border-0 md:hover:text-skin-muted md:p-0"
+              <Link
                 href="/api/logout"
               >
-                Logout
-              </a>
+                <a className="block py-2 pr-4 pl-3 text-skin-secondary border-b  md:hover:bg-transparent md:border-0 md:hover:text-skin-muted md:p-0">Logout</a>
+              </Link>
             ) : (
-              <a
-                className="block py-2 pr-4 pl-3 text-skin-secondary border-b  md:hover:bg-transparent md:border-0 md:hover:text-skin-muted md:p-0"
+              <Link
+        
                 href="/api/login"
               >
-                Login
-              </a>
+                <a className="block py-2 pr-4 pl-3 text-skin-secondary border-b  md:hover:bg-transparent md:border-0 md:hover:text-skin-muted md:p-0">Login</a>
+              </Link>
             ))}
         </div>
 
