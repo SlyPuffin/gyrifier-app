@@ -8,15 +8,14 @@ export default function Layout({ children }) {
     toggleTheme(option);
   };
 
-  let propsObj = {
-    changeTheme: changeTheme,
-    currentTheme: currentTheme,
-  };
+  const props = {
+    changeTheme
+  }
 
   return (
     <>
       <div className={`${currentTheme || ""} bg-skin-primary h-screen`}>
-        <Navbar {...propsObj}></Navbar>
+        <Navbar {...props}></Navbar>
         {children}
       </div>
     </>

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useFetchUser } from "@/auth/user";
 
@@ -6,14 +6,9 @@ export function Navbar(props) {
   const { user, loading } = useFetchUser();
   const [menuShown, setMenuShown] = useState(true);
 
-  const changeTheme = useCallback(() => {
-    let themeSelector = document.getElementById("theme");
-    props.changeTheme(themeSelector.value);
-  }, []);
-
-  const toggleMenu = useCallback(() => {
-    setMenuShown(!menuShown);
-  }, []);
+  const handleSelectChange = (e:any) => {
+    props.changeTheme(e.target.value)
+  }
 
   return (
     <nav className="bg-skin-secondary px-2 py-2.5 sm:px-4">
@@ -55,7 +50,7 @@ export function Navbar(props) {
 
         <div id="menubutton" className="flex items-center md:hidden">
           <button
-            onClick={toggleMenu}
+            onClick={() => setMenuShown(!menuShown)}
             className="mobile-menu-button outline-none"
           >
             <svg
@@ -98,10 +93,10 @@ export function Navbar(props) {
             >
               <label htmlFor="theme">
                 <select
+                onChange={(handleSelectChange)}
                   name="theme"
                   id="theme"
                   className="form-select m-0 flex w-full appearance-none rounded border border-solid border-skin-secondary bg-skin-secondary py-2 pr-4 pl-4 text-center font-normal text-skin-secondary outline-none transition ease-in-out hover:bg-skin-contrast hover:text-skin-contrast md:w-auto"
-                  onChange={changeTheme}
                 >
                   <optgroup label="Color Scheme">
                     <option selected disabled hidden>
