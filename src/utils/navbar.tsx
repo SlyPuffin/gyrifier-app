@@ -13,7 +13,7 @@ export function Navbar(props) {
 
   const toggleMenu = useCallback(() => {
     setMenuShown(!menuShown);
-  }, []);
+  }, [menuShown]);
 
   return (
     <nav className="bg-skin-secondary px-2 py-2.5 sm:px-4">
