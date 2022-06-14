@@ -1,19 +1,17 @@
-import React, { useState } from 'react'
-import { Navbar } from '@/utils/navbar'
-
+import React, { useState } from "react";
+import { Navbar } from "@/utils/navbar";
 
 export default function Layout({ children }) {
-
   const [currentTheme, toggleTheme] = useState(false);
 
   const changeTheme = (option) => {
-    toggleTheme(option)
-  }
+    toggleTheme(option);
+  };
 
   let propsObj = {
-    changeTheme: changeTheme, 
-    currentTheme: currentTheme
-  }
+    changeTheme: changeTheme,
+    currentTheme: currentTheme,
+  };
 
   return (
     <>
@@ -22,7 +20,7 @@ export default function Layout({ children }) {
         {children}
       </div>
     </>
-  )
+  );
 }
 
 
