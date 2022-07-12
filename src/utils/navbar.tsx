@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useFetchUser } from "@/auth/user";
 
 export function Navbar(props) {
-  const { user, loading } = useFetchUser();
+  const { authUser, isAuthUserLoading } = useFetchUser();
   const [menuShown, setMenuShown] = useState(true);
 
   const changeTheme = useCallback(() => {
@@ -35,8 +35,8 @@ export function Navbar(props) {
               Gyrifier
             </span>
           </a>
-          {!loading &&
-            (user ? (
+          {!isAuthUserLoading &&
+            (authUser ? (
               <a
                 className="block py-2 pr-4 pl-3 text-skin-secondary border-b  md:hover:bg-transparent md:border-0 md:hover:text-skin-muted md:p-0"
                 href="/api/logout"

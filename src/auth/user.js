@@ -29,10 +29,10 @@ export async function fetchUser(cookie = "") {
 }
 
 export function useFetchUser({ required } = {}) {
-  const [loading, setLoading] = useState(
+  const [isAuthUserLoading, setLoading] = useState(
     () => !(typeof window !== "undefined" && window.__user)
   );
-  const [user, setUser] = useState(() => {
+  const [authUser, setUser] = useState(() => {
     if (typeof window === "undefined") {
       return null;
     }
@@ -42,23 +42,21 @@ export function useFetchUser({ required } = {}) {
 
   useEffect(
     () => {
-      if (!loading && user) {
+      if (!isAuthUserLoading && authUser) {
         return;
       }
       setLoading(true);
       let isMounted = true;
 
-      fetchUser().then((user) => {
-        console.log("user!");
-        console.log(user);
+      fetchUser().then((authUser) => {
         // Only set the user if the component is still mounted
         if (isMounted) {
           // When the user is not logged in but login is required
-          if (required && !user) {
+          if (required && !authUser) {
             window.location.href = "/api/login";
             return;
           }
-          setUser(user);
+          setUser(authUser);
           setLoading(false);
         }
       });
@@ -71,5 +69,5 @@ export function useFetchUser({ required } = {}) {
     []
   );
 
-  return { user, loading };
+  return { authUser, isAuthUserLoading };
 }

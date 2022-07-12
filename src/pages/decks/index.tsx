@@ -4,9 +4,10 @@ import Link from "next/link";
 import { useFetchUser } from "@/auth/user";
 
 export default function Home() {
-  const { user, loading } = useFetchUser();
+  const { authUser, isAuthUserLoading } = useFetchUser();
+  // TODO: Fix this query for new auth0 action rules
   const userQuery = trpc.useQuery(
-    ["get-user", { email: user?.name ? user?.name : "" }],
+    ["get-user", { email: authUser?.name ? authUser?.name : "" }],
     {
       refetchOnWindowFocus: false,
     }
@@ -58,7 +59,7 @@ export default function Home() {
     }
   }
 
-  if (loading || (user && isLoading)) {
+  if (isAuthUserLoading || (authUser && isLoading)) {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
         <div className="h-5/6 w-5/6 relative flex justify-center items-center">
@@ -69,7 +70,7 @@ export default function Home() {
       </div>
     );
   }
-  if (!loading && !user) {
+  if (!isAuthUserLoading && !authUser) {
     return (
       <div className="h-2/3 w-screen flex justify-center items-center">
         <div className="text-3xl px-8 py-2 text-skin-primary">
@@ -82,7 +83,7 @@ export default function Home() {
       </div>
     );
   }
-  if (data && user) {
+  if (data && authUser) {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
         <div className="h-5/6 w-5/6 relative flex justify-center items-center">
