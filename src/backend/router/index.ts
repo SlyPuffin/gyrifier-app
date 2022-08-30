@@ -5,12 +5,6 @@ import { prisma } from "@/backend/utils/prisma";
 
 export const appRouter = trpc
   .router()
-  .query("get-user", {
-    async resolve() {
-      const userFromDb = await prisma.user.findFirst();
-      return { user: userFromDb };
-    },
-  })
   .query("get-decks-for-user", {
     input: z.object({
       id: z.string(),

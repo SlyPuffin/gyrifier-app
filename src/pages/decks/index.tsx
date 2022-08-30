@@ -5,18 +5,8 @@ import { useFetchUser } from "@/auth/user";
 
 export default function Home() {
   const { authUser, isAuthUserLoading } = useFetchUser();
-  // TODO: Fix this query for new auth0 action rules
-  const userQuery = trpc.useQuery(
-    ["get-user", { email: authUser?.name ? authUser?.name : "" }],
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
   const { data, isLoading } = trpc.useQuery(
-    [
-      "get-decks-for-user",
-      { id: userQuery.data?.user?.id ? userQuery.data?.user?.id : "" },
-    ],
+    ["get-decks-for-user", { id: authUser?.sub ? authUser?.sub : "" }],
     {
       refetchOnWindowFocus: false,
     }
@@ -33,7 +23,7 @@ export default function Home() {
     const input = {
       name: name.value,
       type: "default",
-      userId: userQuery.data?.user?.id || "",
+      userId: authUser?.sub || "",
     };
     const deck = await addDeckMutation.mutateAsync(input);
     setDecks(decks.concat(deck));
@@ -49,8 +39,8 @@ export default function Home() {
     render() {
       return this.props.decks.map((deck) => (
         <Link href={`/decks/practice/${deck.id}`} key={deck.id}>
-          <div className="cursor-pointer bg-skin-secondary border-primary border-4 shadow-2xl text-4xl">
-            <div className="text-4xl px-8 py-2 text-skin-primary">
+          <div className="border-primary cursor-pointer border-4 bg-skin-secondary text-4xl shadow-2xl">
+            <div className="px-8 py-2 text-4xl text-skin-primary">
               <li>{deck.name}</li>
             </div>
           </div>
@@ -61,9 +51,9 @@ export default function Home() {
 
   if (isAuthUserLoading || (authUser && isLoading)) {
     return (
-      <div className="h-screen w-screen flex justify-center items-center">
-        <div className="h-5/6 w-5/6 relative flex justify-center items-center">
-          <div className="cursor-pointer bg-skin-secondary border-skin-secondary border-4 shadow-2xl text-4xl text-skin-secondary">
+      <div className="flex h-screen w-screen items-center justify-center">
+        <div className="relative flex h-5/6 w-5/6 items-center justify-center">
+          <div className="cursor-pointer border-4 border-skin-secondary bg-skin-secondary text-4xl text-skin-secondary shadow-2xl">
             Loading
           </div>
         </div>
@@ -72,8 +62,8 @@ export default function Home() {
   }
   if (!isAuthUserLoading && !authUser) {
     return (
-      <div className="h-2/3 w-screen flex justify-center items-center">
-        <div className="text-3xl px-8 py-2 text-skin-primary">
+      <div className="flex h-2/3 w-screen items-center justify-center">
+        <div className="px-8 py-2 text-3xl text-skin-primary">
           Please{" "}
           <i className="text-skin-secondary md:hover:text-skin-muted">
             <a href="/api/login">Login</a>
@@ -85,14 +75,14 @@ export default function Home() {
   }
   if (data && authUser) {
     return (
-      <div className="h-screen w-screen flex justify-center items-center">
-        <div className="h-5/6 w-5/6 relative flex justify-center items-center">
+      <div className="flex h-screen w-screen items-center justify-center">
+        <div className="relative flex h-5/6 w-5/6 items-center justify-center">
           <ul>
             <form onSubmit={handleDeckSubmit}>
               <input
                 id="name"
                 name="name"
-                className="border-primary border-4 shadow-2xl text-4xl px-8 py-2 text-skin-primary"
+                className="border-primary border-4 px-8 py-2 text-4xl text-skin-primary shadow-2xl"
                 placeholder="New Deck"
               />
               <input type="submit" className="hidden" />
