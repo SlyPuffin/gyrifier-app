@@ -1,30 +1,24 @@
-import React, { Component } from "react";
+import React, { useCallback, useState } from "react";
 import Link from "next/link";
+import { useFetchUser } from "@/auth/user";
 
-export class Navbar extends Component {
-  constructor(props: any) {
-    super(props);
-    this.changeTheme = this.changeTheme.bind(this);
-    this.state = {
-      menushown: true,
-    };
-  }
+export function Navbar(props) {
+  const { authUser, isAuthUserLoading } = useFetchUser();
+  const [menuShown, setMenuShown] = useState(true);
 
-  changeTheme() {
+  const changeTheme = useCallback(() => {
     let themeSelector = document.getElementById("theme");
-    this.props.changeTheme(themeSelector.value);
-  }
+    props.changeTheme(themeSelector.value);
+  }, []);
 
-  toggleMenu() {
-    this.setState((prevState) => ({
-      menushown: !prevState.menushown,
-    }));
-  }
+  const toggleMenu = useCallback(() => {
+    setMenuShown(!menuShown);
+  }, [menuShown]);
 
-  render() {
-    return (
-      <nav className="bg-skin-secondary px-2 py-2.5 sm:px-4">
-        <div className="container mx-auto flex flex-wrap items-center justify-between">
+  return (
+    <nav className="bg-skin-secondary px-2 py-2.5 sm:px-4">
+      <div className="container mx-auto flex flex-wrap items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between">
           <a id="logo" href="#" className="flex">
             <svg
               className="h-10 w-10 fill-skin-logo"
@@ -37,85 +31,92 @@ export class Navbar extends Component {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span className="self-center whitespace-nowrap pl-5 text-lg font-semibold text-skin-secondary">
+            <span className="self-center whitespace-nowrap pl-5 pr-5 text-lg font-semibold text-skin-secondary">
               Gyrifier
             </span>
           </a>
-
-          <div id="menubutton" className="flex items-center md:hidden">
-            <button
-              onClick={this.toggleMenu.bind(this)}
-              className="mobile-menu-button outline-none"
-            >
-              <svg
-                className="h-6 w-6 stroke-skin-logo"
-                x-show="!showMenu"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
-            </button>
-          </div>
-
-          <div
-            id="menuitems"
-            className={`${
-              this.state.menushown ? "hidden" : ""
-            } h-screen w-full md:block md:h-auto md:w-auto`}
-          >
-            <ul className="mt-4 flex w-full flex-col items-center md:mt-0 md:w-auto md:flex-row md:space-x-8 md:text-sm md:font-medium">
-              <div
-                id="themeselect"
-                className="mb-2 w-full text-skin-secondary md:hover:text-skin-muted"
-              >
-                <label htmlFor="theme">
-                  <select
-                    name="theme"
-                    id="theme"
-                    className="form-select m-0 flex w-full appearance-none rounded border border-solid border-skin-secondary bg-skin-secondary py-2 pr-4 pl-4 text-center font-normal text-skin-secondary outline-none transition ease-in-out hover:bg-skin-contrast hover:text-skin-contrast md:w-auto"
-                    onChange={this.changeTheme}
-                  >
-                    <optgroup label="Color Scheme">
-                      <option selected disabled hidden>
-                        Theme
-                      </option>
-                      <option value="easter">Easter</option>
-                      <option value="classic">Default</option>
-                      <option value="quirky">Quirky</option>
-                    </optgroup>
-                  </select>
-                </label>
-              </div>
-              <Link href="/">
-                <a
-                  className=" mb-2 w-full rounded border border-skin-secondary py-2 pr-4 pl-4 text-center text-skin-secondary hover:bg-skin-contrast hover:text-skin-contrast md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
-                  aria-current="page"
-                >
-                  Home
-                </a>
-              </Link>
-              <Link href="/decks">
-                <a
-                  className=" mb-2 w-full rounded border border-skin-secondary py-2 pr-4 pl-4 text-center text-skin-secondary hover:bg-skin-contrast hover:text-skin-contrast md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
-                >
-                  Decks
-                </a>
-              </Link>
+          {!isAuthUserLoading &&
+            (authUser ? (
               <a
-                href="https://github.com/SlyPuffin/gyrifier-app"
-                target="_"
-                className="mb-2 w-full rounded border border-skin-secondary py-2 pr-4 pl-4 text-center text-skin-secondary hover:bg-skin-contrast hover:text-skin-contrast  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
+                className="block border-b py-2 pr-4 pl-3 text-skin-secondary  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted"
+                href="/api/logout"
               >
-                Git
+                Logout
               </a>
-            </ul>
-          </div>
+            ) : (
+              <a
+                className="block border-b py-2 pr-4 pl-3 text-skin-secondary  md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted"
+                href="/api/login"
+              >
+                Login
+              </a>
+            ))}
         </div>
-      </nav>
-    );
-  }
+
+        <div id="menubutton" className="flex items-center md:hidden">
+          <button
+            onClick={toggleMenu}
+            className="mobile-menu-button outline-none"
+          >
+            <svg
+              className="h-6 w-6 stroke-skin-logo"
+              x-show="!showMenu"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div
+          id="menuitems"
+          className={`${
+            menuShown ? "hidden" : ""
+          } h-screen w-full md:block md:h-auto md:w-auto`}
+        >
+          <ul className="mt-4 flex w-full flex-col items-center md:mt-0 md:w-auto md:flex-row md:space-x-8 md:text-sm md:font-medium">
+            <Link href="/">
+              <a
+                className=" mb-2 w-full rounded border border-skin-secondary py-2 pr-4 pl-4 text-center text-skin-secondary hover:bg-skin-contrast hover:text-skin-contrast md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  "
+                aria-current="page"
+              >
+                Home
+              </a>
+            </Link>
+            <Link href="/decks">
+              <a className=" mb-2 w-full rounded border border-skin-secondary py-2 pr-4 pl-4 text-center text-skin-secondary hover:bg-skin-contrast hover:text-skin-contrast md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-skin-muted  ">
+                Decks
+              </a>
+            </Link>
+            <div
+              id="themeselect"
+              className="mb-2 w-full text-skin-secondary md:hover:text-skin-muted"
+            >
+              <label htmlFor="theme">
+                <select
+                  name="theme"
+                  id="theme"
+                  className="form-select m-0 flex w-full appearance-none rounded border border-solid border-skin-secondary bg-skin-secondary py-2 pr-4 pl-4 text-center font-normal text-skin-secondary outline-none transition ease-in-out hover:bg-skin-contrast hover:text-skin-contrast md:w-auto"
+                  onChange={changeTheme}
+                >
+                  <optgroup label="Color Scheme">
+                    <option selected disabled hidden>
+                      Theme
+                    </option>
+                    <option value="easter">Easter</option>
+                    <option value="classic">Default</option>
+                    <option value="quirky">Quirky</option>
+                  </optgroup>
+                </select>
+              </label>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 }

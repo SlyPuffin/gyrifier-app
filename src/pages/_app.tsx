@@ -5,9 +5,9 @@ import Layout from "../layouts/Layout";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout>
-       <Component {...pageProps} />
+      <Component {...pageProps} />
     </Layout>
-  )
+  );
 }
 
 import { withTRPC } from "@trpc/next";

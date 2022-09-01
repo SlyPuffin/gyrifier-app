@@ -1,22 +1,17 @@
 import { trpc } from "@/utils/trpc";
 import React, { useState } from "react";
 import Link from "next/link";
-import { Deck } from "@prisma/client";
+import { useFetchUser } from "@/auth/user";
 
 export default function Home() {
-  const userQuery = trpc.useQuery(["get-user"], {
-    refetchOnWindowFocus: false,
-  });
+  const { authUser, isAuthUserLoading } = useFetchUser();
   const { data, isLoading } = trpc.useQuery(
-    [
-      "get-decks-for-user",
-      { id: userQuery.data?.user?.id ? userQuery.data?.user?.id : "" },
-    ],
+    ["get-decks-for-user", { id: authUser?.sub ? authUser?.sub : "" }],
     {
       refetchOnWindowFocus: false,
     }
   );
-  const addDeckMutation = trpc.useMutation('add-deck');
+  const addDeckMutation = trpc.useMutation("add-deck");
 
   const [decks, setDecks] = React.useState<Deck[]>(data?.decks || []);
 
@@ -28,12 +23,12 @@ export default function Home() {
     const input = {
       name: name.value,
       type: "default",
-      userId: userQuery.data?.user?.id || ''
+      userId: authUser?.sub || "",
     };
     const deck = await addDeckMutation.mutateAsync(input);
     setDecks(decks.concat(deck));
-    name.value = '';
-  }
+    name.value = "";
+  };
 
   type DeckProps = {
     decks: Deck[];
@@ -44,8 +39,8 @@ export default function Home() {
     render() {
       return this.props.decks.map((deck) => (
         <Link href={`/decks/practice/${deck.id}`} key={deck.id}>
-          <div className="cursor-pointer bg-skin-secondary border-primary border-4 shadow-2xl text-4xl">
-            <div className="text-4xl px-8 py-2 text-skin-primary">
+          <div className="border-primary cursor-pointer border-4 bg-skin-secondary text-4xl shadow-2xl">
+            <div className="px-8 py-2 text-4xl text-skin-primary">
               <li>{deck.name}</li>
             </div>
           </div>
@@ -54,25 +49,43 @@ export default function Home() {
     }
   }
 
-  if (isLoading) {
+  if (isAuthUserLoading || (authUser && isLoading)) {
     return (
-      <div className="h-screen w-screen flex justify-center items-center">
-        <div className="h-5/6 w-5/6 relative flex justify-center items-center">
-          <div className="cursor-pointer bg-skin-secondary border-skin-secondary border-4 shadow-2xl text-4xl text-skin-secondary">
-            No Decks...
+      <div className="flex h-screen w-screen items-center justify-center">
+        <div className="relative flex h-5/6 w-5/6 items-center justify-center">
+          <div className="cursor-pointer border-4 border-skin-secondary bg-skin-secondary text-4xl text-skin-secondary shadow-2xl">
+            Loading
           </div>
         </div>
       </div>
     );
   }
-  if (data) {
+  if (!isAuthUserLoading && !authUser) {
     return (
-      <div className="h-screen w-screen flex justify-center items-center">
-        <div className="h-5/6 w-5/6 relative flex justify-center items-center">
+      <div className="flex h-2/3 w-screen items-center justify-center">
+        <div className="px-8 py-2 text-3xl text-skin-primary">
+          Please{" "}
+          <i className="text-skin-secondary md:hover:text-skin-muted">
+            <a href="/api/login">Login</a>
+          </i>{" "}
+          to start studying.
+        </div>
+      </div>
+    );
+  }
+  if (data && authUser) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <div className="relative flex h-5/6 w-5/6 items-center justify-center">
           <ul>
             <form onSubmit={handleDeckSubmit}>
-              <input id="name" name="name" className="border-primary border-4 shadow-2xl text-4xl px-8 py-2 text-skin-primary" placeholder="New Deck"/>
-              <input type="submit" className="hidden"/>
+              <input
+                id="name"
+                name="name"
+                className="border-primary border-4 px-8 py-2 text-4xl text-skin-primary shadow-2xl"
+                placeholder="New Deck"
+              />
+              <input type="submit" className="hidden" />
             </form>
             <Decks decks={decks} />
           </ul>
