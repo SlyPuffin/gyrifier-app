@@ -6,9 +6,8 @@ export function Navbar(props) {
   const { authUser, isAuthUserLoading } = useFetchUser();
   const [menuShown, setMenuShown] = useState(true);
 
-  const changeTheme = useCallback(() => {
-    let themeSelector = document.getElementById("theme");
-    props.changeTheme(themeSelector.value);
+  const changeTheme = useCallback((theme) => {
+    props.changeTheme(theme);
   }, []);
 
   const toggleMenu = useCallback(() => {
@@ -101,7 +100,7 @@ export function Navbar(props) {
                   name="theme"
                   id="theme"
                   className="form-select m-0 flex w-full appearance-none rounded border border-solid border-skin-secondary bg-skin-secondary py-2 pr-4 pl-4 text-center font-normal text-skin-secondary outline-none transition ease-in-out hover:bg-skin-contrast hover:text-skin-contrast md:w-auto"
-                  onChange={changeTheme}
+                  onChange={(e) => changeTheme(e.target.value)}
                 >
                   <optgroup label="Color Scheme">
                     <option selected disabled hidden>

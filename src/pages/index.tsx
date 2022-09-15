@@ -16,7 +16,7 @@ export default function Home() {
           <div className="px-8 py-2 text-3xl text-skin-primary">
             Welcome to Gyrifier! Please{" "}
             <i className="text-skin-secondary md:hover:text-skin-muted">
-              <a href="/api/login">Login</a>
+              <Link href="/api/login">Login</Link>
             </i>{" "}
             to continue.
           </div>

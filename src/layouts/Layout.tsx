@@ -15,12 +15,10 @@ export default function Layout({ children }) {
 
   return (
     <>
-      <div className={`${currentTheme || ""} bg-skin-primary h-screen`}>
+      <div className={`${currentTheme || ""} h-screen bg-skin-primary`}>
         <Navbar {...propsObj}></Navbar>
         {children}
       </div>
     </>
   );
 }
-
-

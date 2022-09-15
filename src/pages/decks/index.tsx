@@ -2,11 +2,12 @@ import { trpc } from "@/utils/trpc";
 import React, { useState } from "react";
 import Link from "next/link";
 import { useFetchUser } from "@/auth/user";
+import { Deck } from "@prisma/client";
 
 export default function Home() {
   const { authUser, isAuthUserLoading } = useFetchUser();
   const { data, isLoading } = trpc.useQuery(
-    ["get-decks-for-user", { id: authUser?.sub ? authUser?.sub : "" }],
+    ["get-decks-for-user", { id: !isAuthUserLoading ? authUser?.sub : "" }],
     {
       refetchOnWindowFocus: false,
     }
@@ -66,7 +67,7 @@ export default function Home() {
         <div className="px-8 py-2 text-3xl text-skin-primary">
           Please{" "}
           <i className="text-skin-secondary md:hover:text-skin-muted">
-            <a href="/api/login">Login</a>
+            <Link href="/api/login">Login</Link>
           </i>{" "}
           to start studying.
         </div>
