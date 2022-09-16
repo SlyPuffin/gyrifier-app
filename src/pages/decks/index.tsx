@@ -41,7 +41,7 @@ export default function Home() {
       return this.props.decks.map((deck) => (
         <Link href={`/decks/practice/${deck.id}`} key={deck.id}>
           <div className="border-primary cursor-pointer border-4 bg-skin-secondary text-4xl shadow-2xl">
-            <div className="px-8 py-2 text-4xl text-skin-primary">
+            <div className="px-8 py-2 text-4xl text-skin-secondary">
               <li>{deck.name}</li>
             </div>
           </div>

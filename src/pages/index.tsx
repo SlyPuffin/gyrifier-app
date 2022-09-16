@@ -27,7 +27,7 @@ export default function Home() {
         <div className="flex h-2/3 w-screen items-center justify-center">
           <img src={authUser.picture} alt="user picture" />
           <div className="px-8 py-2 text-3xl text-skin-primary">
-            Welcome, {authUser.user_id}! Select{" "}
+            Welcome, {authUser.name}! Select{" "}
             <i className="text-skin-secondary md:hover:text-skin-muted">
               <Link href="/decks">Decks</Link>
             </i>{" "}
