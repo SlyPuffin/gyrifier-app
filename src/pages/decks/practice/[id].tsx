@@ -47,8 +47,10 @@ export default function Review() {
 
     componentDidMount() {
       // NOTE: This seems to reset when 'looking away' from the window
-      this.updateStateForCardIndex(this.state.cardNumber);
-      this.timerID = window.setInterval(() => this.tick(), 1000);
+      if (data && (data.cards.length > 0)) {
+        this.updateStateForCardIndex(this.state.cardNumber);
+        this.timerID = window.setInterval(() => this.tick(), 1000);
+      }
     }
 
     componentWillUnmount() {
@@ -56,7 +58,7 @@ export default function Review() {
     }
 
     render() {
-      if (data) {
+      if (data && (data.cards.length > 0)) {
         return (
           <div className="h-screen w-screen flex justify-center items-center">
             <div className="h-5/6 w-5/6 relative flex justify-center items-center">
@@ -147,6 +149,17 @@ export default function Review() {
                     ></div>
                   )}
                 </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+      else {
+        return (
+          <div className="h-screen w-screen flex justify-center items-center">
+            <div className="h-5/6 w-5/6 relative flex justify-center items-center">
+              <div className="absolute text-skin-primary text-5xl top-1">
+                No cards in deck
               </div>
             </div>
           </div>
