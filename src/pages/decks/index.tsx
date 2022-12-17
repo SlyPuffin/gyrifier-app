@@ -39,13 +39,22 @@ export default function Home() {
   class Decks extends React.Component<DeckProps, DeckState> {
     render() {
       return this.props.decks.map((deck) => (
-        <Link href={`/decks/practice/${deck.id}`} key={deck.id}>
-          <div className="border-primary cursor-pointer border-4 bg-skin-secondary text-4xl shadow-2xl">
-            <div className="px-8 py-2 text-4xl text-skin-secondary">
+          <button className="cursor-default border-primary flex flex-row justify-center items-center w-screen md:w-full h-28 md:h-40 border-4 bg-skin-secondary text-sm shadow-lg md:text-4xl md:shadow-2xl group">
+            <Link href={`/decks/practice/${deck.id}`} key={deck.id}>
+              <div className="cursor-pointer relative flex flex-initial px-2 md:px-8 w-20 h-20 md:w-36 md:h-36 justify-center items-center text-skin-primary bg-skin-contrast border-primary border-2 shadow-lg md:border-4 md:shadow-2xl rounded-full invisible group-hover:visible group-focus:visible">
+                Practice
+              </div>
+            </Link>
+            <div className="px-3 md:px-8 py-2 text-base md:text-4xl flex flex-initial justify-center items-center text-skin-secondary">
               <li>{deck.name}</li>
             </div>
-          </div>
-        </Link>
+            <div className="cursor-pointer relative flex flex-initial px-2 md:px-8 w-20 h-20 md:w-36 md:h-36 justify-center items-center text-skin-primary bg-skin-contrast border-primary border-2 shadow-lg md:border-4 md:shadow-2xl rounded-full invisible group-hover:visible group-focus:visible">
+              Edit
+            </div>
+            <div className="cursor-pointer relative flex flex-initial px-2 md:px-8 w-20 h-20 md:w-36 md:h-36 justify-center items-center text-skin-primary bg-skin-contrast border-primary border-2 shadow-lg md:border-4 md:shadow-2xl rounded-full invisible group-hover:visible group-focus:visible">
+              Delete
+            </div>
+          </button>
       ));
     }
   }
@@ -76,14 +85,14 @@ export default function Home() {
   }
   if (data && authUser) {
     return (
-      <div className="flex h-screen w-screen items-center justify-center">
-        <div className="relative flex h-5/6 w-5/6 items-center justify-center">
+      <div className="flex w-screen md:w-auto items-center md:justify-center">
+        <div className="relative flex w-screen md:w-5/6 items-center md:justify-center">
           <ul>
             <form onSubmit={handleDeckSubmit}>
               <input
                 id="name"
                 name="name"
-                className="border-primary border-4 px-8 py-2 text-4xl text-skin-primary shadow-2xl"
+                className="flex w-screen md:w-full border-primary border-4 px-8 py-2 text-4xl text-skin-primary shadow-2xl md:justify-center"
                 placeholder="New Deck"
               />
               <input type="submit" className="hidden" />
