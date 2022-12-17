@@ -39,8 +39,8 @@ export default function Home() {
   class Decks extends React.Component<DeckProps, DeckState> {
     render() {
       return this.props.decks.map((deck) => (
-          <button className="cursor-default border-primary flex flex-row justify-center items-center w-screen md:w-full h-28 md:h-40 border-4 bg-skin-secondary text-sm shadow-lg md:text-4xl md:shadow-2xl group">
-            <Link href={`/decks/practice/${deck.id}`} key={deck.id}>
+          <button key={deck.id} className="cursor-default border-primary flex flex-row justify-center items-center w-screen md:w-full h-28 md:h-40 border-4 bg-skin-secondary text-sm shadow-lg md:text-4xl md:shadow-2xl group">
+            <Link href={`/decks/practice/${deck.id}`}>
               <div className="cursor-pointer relative flex flex-initial px-2 md:px-8 w-20 h-20 md:w-36 md:h-36 justify-center items-center text-skin-primary bg-skin-contrast border-primary border-2 shadow-lg md:border-4 md:shadow-2xl rounded-full invisible group-hover:visible group-focus:visible">
                 Practice
               </div>
