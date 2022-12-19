@@ -39,29 +39,27 @@ export default function Home() {
   class Decks extends React.Component<DeckProps, DeckState> {
     render() {
       return this.props.decks.map((deck) => (
-          <button key={deck.id} className="cursor-default border-primary flex flex-row justify-center items-center w-screen md:w-full h-28 md:h-40 border-4 bg-skin-secondary text-sm shadow-lg md:text-4xl md:shadow-2xl group">
-            <Link href={`/decks/practice/${deck.id}`}>
-              <div className="cursor-pointer relative flex flex-initial px-2 md:px-8 w-20 h-20 md:w-36 md:h-36 justify-center items-center text-skin-primary bg-skin-contrast border-primary border-2 shadow-lg md:border-4 md:shadow-2xl rounded-full invisible group-hover:visible group-focus:visible">
-                Practice
-              </div>
-            </Link>
-            <div className="flex flex-col">
-              <div className="px-3 md:px-8 py-2 text-base md:text-4xl flex flex-initial justify-center items-center text-skin-secondary">
-                <li>{deck.name}</li>
-              </div>
-              <div className="text-sm md:text-base flex flex-initial justify-center text-skin-secondary">
-                {deck.cards ? deck.cards.length : 0} Cards
-              </div>
+        <button
+          key={deck.id}
+          className="border-primary group flex h-28 w-screen cursor-default flex-row items-center justify-center border-4 bg-skin-secondary text-sm shadow-lg md:h-40 md:w-full md:text-4xl md:shadow-2xl"
+        >
+          <Link href={`/decks/practice/${deck.id}`}>
+            <div className="border-primary invisible relative flex h-20 w-20 flex-initial cursor-pointer items-center justify-center rounded-full border-2 bg-skin-contrast px-2 text-skin-primary shadow-lg group-hover:visible group-focus:visible md:h-36 md:w-36 md:border-4 md:px-8 md:shadow-2xl">
+              Practice
             </div>
-            <Link href={`/decks/edit/${deck.id}`}>
-              <div className="cursor-pointer relative flex flex-initial px-2 md:px-8 w-20 h-20 md:w-36 md:h-36 justify-center items-center text-skin-primary bg-skin-contrast border-primary border-2 shadow-lg md:border-4 md:shadow-2xl rounded-full invisible group-hover:visible group-focus:visible">
-                Edit
-              </div>
-            </Link>
-            <div className="cursor-pointer relative flex flex-initial px-2 md:px-8 w-20 h-20 md:w-36 md:h-36 justify-center items-center text-skin-primary bg-skin-contrast border-primary border-2 shadow-lg md:border-4 md:shadow-2xl rounded-full invisible group-hover:visible group-focus:visible">
-              Delete
+          </Link>
+          <div className="flex flex-initial items-center justify-center px-3 py-2 text-base text-skin-secondary md:px-8 md:text-4xl">
+            <li>{deck.name}</li>
+          </div>
+          <Link href={`/decks/edit/${deck.id}`}>
+            <div className="border-primary invisible relative flex h-20 w-20 flex-initial cursor-pointer items-center justify-center rounded-full border-2 bg-skin-contrast px-2 text-skin-primary shadow-lg group-hover:visible group-focus:visible md:h-36 md:w-36 md:border-4 md:px-8 md:shadow-2xl">
+              Edit
             </div>
-          </button>
+          </Link>
+          <div className="border-primary invisible relative flex h-20 w-20 flex-initial cursor-pointer items-center justify-center rounded-full border-2 bg-skin-contrast px-2 text-skin-primary shadow-lg group-hover:visible group-focus:visible md:h-36 md:w-36 md:border-4 md:px-8 md:shadow-2xl">
+            Delete
+          </div>
+        </button>
       ));
     }
   }
@@ -92,14 +90,14 @@ export default function Home() {
   }
   if (data && authUser) {
     return (
-      <div className="flex w-screen md:w-auto items-center md:justify-center">
-        <div className="overflow-auto relative flex w-screen md:w-5/6 items-center md:justify-center">
+      <div className="flex w-screen items-center md:w-auto md:justify-center">
+        <div className="relative flex w-screen items-center overflow-auto md:w-5/6 md:justify-center">
           <ul>
             <form onSubmit={handleDeckSubmit}>
               <input
                 id="name"
                 name="name"
-                className="flex w-screen md:w-full border-primary border-4 px-8 py-2 text-4xl text-skin-primary shadow-2xl md:justify-center"
+                className="border-primary flex w-screen border-4 px-8 py-2 text-4xl text-skin-primary shadow-2xl md:w-full md:justify-center"
                 placeholder="New Deck"
               />
               <input type="submit" className="hidden" />
