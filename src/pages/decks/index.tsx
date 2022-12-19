@@ -45,12 +45,19 @@ export default function Home() {
                 Practice
               </div>
             </Link>
-            <div className="px-3 md:px-8 py-2 text-base md:text-4xl flex flex-initial justify-center items-center text-skin-secondary">
-              <li>{deck.name}</li>
+            <div className="flex flex-col">
+              <div className="px-3 md:px-8 py-2 text-base md:text-4xl flex flex-initial justify-center items-center text-skin-secondary">
+                <li>{deck.name}</li>
+              </div>
+              <div className="text-sm md:text-base flex flex-initial justify-center text-skin-secondary">
+                {deck.cards ? deck.cards.length : 0} Cards
+              </div>
             </div>
-            <div className="cursor-pointer relative flex flex-initial px-2 md:px-8 w-20 h-20 md:w-36 md:h-36 justify-center items-center text-skin-primary bg-skin-contrast border-primary border-2 shadow-lg md:border-4 md:shadow-2xl rounded-full invisible group-hover:visible group-focus:visible">
-              Edit
-            </div>
+            <Link href={`/decks/edit/${deck.id}`}>
+              <div className="cursor-pointer relative flex flex-initial px-2 md:px-8 w-20 h-20 md:w-36 md:h-36 justify-center items-center text-skin-primary bg-skin-contrast border-primary border-2 shadow-lg md:border-4 md:shadow-2xl rounded-full invisible group-hover:visible group-focus:visible">
+                Edit
+              </div>
+            </Link>
             <div className="cursor-pointer relative flex flex-initial px-2 md:px-8 w-20 h-20 md:w-36 md:h-36 justify-center items-center text-skin-primary bg-skin-contrast border-primary border-2 shadow-lg md:border-4 md:shadow-2xl rounded-full invisible group-hover:visible group-focus:visible">
               Delete
             </div>
@@ -86,7 +93,7 @@ export default function Home() {
   if (data && authUser) {
     return (
       <div className="flex w-screen md:w-auto items-center md:justify-center">
-        <div className="relative flex w-screen md:w-5/6 items-center md:justify-center">
+        <div className="overflow-auto relative flex w-screen md:w-5/6 items-center md:justify-center">
           <ul>
             <form onSubmit={handleDeckSubmit}>
               <input
